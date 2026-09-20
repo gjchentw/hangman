@@ -123,7 +123,9 @@ python3 tools/build_dict.py
 推送到 `main` 會觸發 [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)，
 把 `hangman.html` 當成 `index.html` 發布到 GitHub Pages。
 
-首次使用需在 **Settings → Pages → Build and deployment → Source** 選擇 **GitHub Actions**。
+Workflow 會在第一次執行時自動開啟 Pages（`configure-pages` 的 `enablement: true`），
+不需要手動設定。若組織政策禁止自動開啟，請改在 **Settings → Pages → Build and deployment → Source**
+選擇 **GitHub Actions**。
 
 ## 資料來源與授權
 
