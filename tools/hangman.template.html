@@ -1006,6 +1006,16 @@
         }
         return;
       }
+      if (event.key === " ") {
+        // Space is the pronounce shortcut mid-round. preventDefault also stops
+        // it re-activating whatever button still holds focus: in strict mode the
+        // on-screen keys stay enabled, so a clicked key would otherwise fire
+        // again and cost a life.
+        event.preventDefault();
+        speak();
+        return;
+      }
+
       const key = event.key.toLowerCase();
       if (key.length === 1 && isLetter(key)) {
         event.preventDefault();

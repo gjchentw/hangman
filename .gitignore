@@ -16,3 +16,9 @@ __pycache__/
 
 # Pages build output
 _site/
+
+# Node (test harness)
+node_modules/
+
+# Working notes, not part of the project
+tasks/
