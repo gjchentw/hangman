@@ -128,6 +128,7 @@ DENIED_SENSES = {
     ("chick", "af33a17905"),     # this sense: informal term for a (young) woman
     ("maid", "91179860d3"),      # this sense: "an unmarried girl (especially a virgin)" ties status to virginity
     ("peach", "16433fcde2"),     # this sense: "a very attractive or seductive looking woman"
+    ("pure", "9409ea5db6"),      # this sense: "in a state of sexual virginity" ties status to virginity
     # factually wrong definitions (wordset/WordNet data errors)
     ("egg", "a3d6f170a4"),       # this sense is testicle's definition, misfiled under "egg"
     ("planet", "bc03f09ee7"),    # this sense ("a person who follows or serves another") is satellite's, misfiled under "planet"
