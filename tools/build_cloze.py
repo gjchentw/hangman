@@ -186,6 +186,7 @@ DENIED_SENSES = {
     ("purity", "f7c0cf67c6"),    # this sense: "a woman's virtue or chastity" ties status to chastity
     ("honor", "b50ba5d3d2"),     # this sense: "a woman's virtue or chastity" ties status to chastity
     ("chaste", "fdee222025"),    # this sense: "morally pure, especially not having experienced sexual intercourse" ties status to virginity
+    ("virtuous", "693e844203"),  # this sense: "in a state of sexual virginity" ties status to virginity
     # distressing medical content, inappropriate for an exam-prep vocabulary game
     ("monster", "a6aea95ab0"),   # this sense: "a grossly malformed and usually nonviable fetus"
     # factually wrong definitions (wordset/WordNet data errors)
