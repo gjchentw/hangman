@@ -132,6 +132,7 @@ DENIED_SENSES = {
     ("sex", "751dbc0659"),       # this sense: "the feelings resulting from the urge to gratify sexual impulses"
     ("penetrate", "8923578a40"), # this sense: explicit sexual-anatomical act
     ("screw", "f40552631a"),     # crude slang for sexual intercourse
+    ("strip", "a7566c208e"),     # this sense: striptease, erotic entertainment
     # prostitution-related, inappropriate for an exam-prep vocabulary game
     ("madam", "beb6da0c20"),     # this sense: a woman who runs a brothel
     # objectifying/dated stereotype, inappropriate for an exam-prep vocabulary game
