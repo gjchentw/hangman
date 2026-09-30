@@ -201,6 +201,17 @@
 
   .defs { margin: 0; padding: 0; list-style: none; max-height: 210px; overflow-y: auto; }
   .defs li { display: flex; gap: 8px; margin-bottom: 8px; font-size: .9375rem; }
+  /* A cloze runs as prose, unlike the flex rows the definitions use. */
+  .defs li.cloze { display: block; font-size: 1rem; line-height: 1.75; }
+  .blank {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    letter-spacing: .12em;
+    color: var(--accent);
+    border-bottom: 1px solid var(--accent);
+    padding: 0 3px;
+    white-space: nowrap;
+  }
+  .blank.filled { letter-spacing: normal; font-weight: 700; }
   .pos {
     flex: none;
     font-size: .6875rem;
@@ -423,6 +434,7 @@
     pool: null,      // what bank words are matched against: dict, or cloze
     dict: null,      // word -> [[definition, part-of-speech], ...]
     cloze: null,     // base -> [[answer, sentence, definition, part-of-speech], ...]
+    hint: null,      // cloze game: this round's { sentence, definition, pos }
     zhDict: null,    // word -> Traditional Chinese gloss
     lang: "zh",      // which one the definition panel shows
     bank: [],          // words that made it into the question pool
@@ -617,8 +629,17 @@
   function nextRound() {
     if (!state.bag.length) state.bag = shuffle(state.bank);
     state.word = state.bag.pop();
-    state.answer = state.word;
-    state.defs = state.dict[state.word] || [];
+    if (CLOZE) {
+      // One of the word's clozes at random; its answer may be inflected
+      // ("fell" for "fall"), and that form is what the player spells.
+      const options = state.cloze[state.word];
+      const [answer, sentence, definition, pos] = options[Math.floor(Math.random() * options.length)];
+      state.answer = answer;
+      state.hint = { sentence, definition, pos };
+    } else {
+      state.answer = state.word;
+      state.defs = state.dict[state.word] || [];
+    }
     state.guessed = new Set();
     // Non-letters (hyphens) are never guessed, so they start revealed.
     state.revealed = [...state.answer].map((ch) => !isLetter(ch));
@@ -650,7 +671,39 @@
     return li;
   }
 
+  // The blank is as wide as the answer - the inflected form - so its width is
+  // an honest clue: "expecting" gets nine underscores, not six.
+  function clozeItem(sentence) {
+    const li = document.createElement("li");
+    li.className = "cloze";
+    const [before, after = ""] = sentence.split("{{blank}}");
+    const blank = document.createElement("span");
+    blank.className = "blank";
+    li.append(document.createTextNode(before), blank, document.createTextNode(after));
+    return li;
+  }
+
+  function renderBlank() {
+    const blank = $("defs").querySelector(".blank");
+    if (!blank) return;
+    // Once the round is over the sentence reads whole, so it can be learned as written.
+    const over = state.phase !== "playing";
+    blank.classList.toggle("filled", over);
+    blank.textContent = over
+      ? state.answer
+      : [...state.answer].map((ch) => (isLetter(ch) ? "_" : ch)).join("");
+  }
+
   function renderDefs() {
+    if (CLOZE) {
+      $("defs").replaceChildren(
+        clozeItem(state.hint.sentence),
+        defItem(state.hint.pos, state.hint.definition)
+      );
+      renderBlank();
+      return;
+    }
+
     const zh = state.zhDict ? state.zhDict[state.word] : null;
     // Every bundled word has a Chinese gloss, but fall back rather than show
     // an empty panel if one is ever missing.
@@ -768,6 +821,7 @@
   function render() {
     const over = state.phase !== "playing";
     const lost = state.phase === "lost";
+    if (CLOZE) renderBlank();
 
     const strict = state.mode === "strict";
     const slot = strict && !over ? nextSlot() : -1;
@@ -811,7 +865,9 @@
     if (over) {
       $("result").className = `result ${state.phase === "won" ? "win" : "lose"}`;
       $("result-title").textContent = state.phase === "won" ? "答對了！" : "可惜，機會用完了";
-      $("result-word").textContent = state.answer;
+      // In the cloze game the answer can be an inflection of the bank word.
+      $("result-word").textContent =
+        state.answer === state.word ? state.answer : `${state.answer} ← ${state.word}`;
       $("next").focus();
     }
 

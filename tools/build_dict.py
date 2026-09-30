@@ -170,8 +170,17 @@ def main() -> int:
     zh = {w: t for w, t in zh.items() if w in entries}
     zh_payload, zh_sizes = build_payload(zh)
 
-    # The cloze game's content, validated; empty until authored clozes exist.
-    cloze = {}
+    # The cloze game's content. Imported here, not at the top, because
+    # build_cloze imports this module. Only entries that pass every check ship;
+    # build_cloze.py itself fails CI on any reject, so an exclusion here is a
+    # last line of defence rather than the normal path.
+    import build_cloze
+
+    lexicon = build_cloze.Lexicon(args.cache_dir)
+    valid, rejects = build_cloze.validate(lexicon, build_cloze.load_batches(build_cloze.CLOZE_DIR))
+    cloze = build_cloze.payload(lexicon, valid)
+    for r in rejects:
+        print(f"  excluded {r['file']}#{r['index']} {r['w']}: {r['code']}", file=sys.stderr)
     cloze_payload, cloze_sizes = build_payload(cloze)
 
     template = TEMPLATE_PATH.read_text(encoding="utf-8")
@@ -207,6 +216,7 @@ def main() -> int:
     print(f"  zh gzipped           : {mb(zh_sizes['gzip_bytes'])}", file=sys.stderr)
     print(f"  zh base64 (embedded) : {mb(zh_sizes['b64_bytes'])}", file=sys.stderr)
     print(f"  cloze words          : {len(cloze):,}", file=sys.stderr)
+    print(f"  cloze hints          : {len(valid):,}  ({len(rejects)} excluded)", file=sys.stderr)
     print(f"  cloze base64 (embed) : {mb(cloze_sizes['b64_bytes'])}", file=sys.stderr)
     print(f"\nWrote {OUTPUT_PATH} ({mb(OUTPUT_PATH.stat().st_size)})", file=sys.stderr)
     print(f"Wrote {CLOZE_OUTPUT_PATH} ({mb(CLOZE_OUTPUT_PATH.stat().st_size)})", file=sys.stderr)
