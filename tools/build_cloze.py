@@ -139,6 +139,7 @@ DENIED_SENSES = {
     ("sex", "751dbc0659"),       # this sense: "the feelings resulting from the urge to gratify sexual impulses"
     ("penetrate", "8923578a40"), # this sense: explicit sexual-anatomical act
     ("penetration", "b8841f7824"), # this sense: explicit sexual-anatomical act
+    ("fetish", "c6073034bb"),    # this sense: explicit sexual paraphilia definition
     ("screw", "f40552631a"),     # crude slang for sexual intercourse
     ("strip", "a7566c208e"),     # this sense: striptease, erotic entertainment
     ("ass", "49e31b3efc"),       # crude slang for sexual intercourse
