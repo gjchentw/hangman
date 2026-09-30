@@ -113,6 +113,9 @@ DENIED_SENSES = {
     ("jet", "f58231dc3c"),       # street name for ketamine
     ("pot", "379647ed83"),       # street name for marijuana
     ("superman", "39118e8b8d"),  # street name for LSD
+    ("deck", "1d39b69bf1"),      # street name for a packet of illegal drugs
+    ("dose", "354d9b6271"),      # street name for LSD
+    ("dose", "a475e97a0c"),      # crude slang for a sexually transmitted infection
     ("upper", "3eebf95724"),     # slang for a CNS stimulant drug (amphetamines)
     ("weed", "ce5445de32"),      # street name for marijuana
     # sexually explicit, inappropriate for an exam-prep vocabulary game
