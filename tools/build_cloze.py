@@ -100,6 +100,8 @@ DENIED_SENSES = {
     ("bull", "3eccbb5d2f"),      # obscene slang ("bullshit") for behavior
     # drug slang, inappropriate for an exam-prep vocabulary game
     ("chalk", "6bef8be884"),     # slang for methamphetamine
+    # sexually explicit, inappropriate for an exam-prep vocabulary game
+    ("feel", "815234b322"),      # this sense: manual sexual stimulation
     # factually wrong definitions (wordset/WordNet data errors)
     ("egg", "a3d6f170a4"),       # this sense is testicle's definition, misfiled under "egg"
 }
