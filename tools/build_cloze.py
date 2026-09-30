@@ -109,6 +109,7 @@ DENIED_SENSES = {
     ("feel", "815234b322"),      # this sense: manual sexual stimulation
     ("love", "41469d1b21"),      # this sense: sexual intercourse
     ("neck", "9e7d9b1f64"),      # this sense: fondle with sexual passion ("necking")
+    ("relation", "e7111c9574"), # this sense: the act of sexual procreation
     # prostitution-related, inappropriate for an exam-prep vocabulary game
     ("madam", "beb6da0c20"),     # this sense: a woman who runs a brothel
     # objectifying/dated stereotype, inappropriate for an exam-prep vocabulary game
