@@ -93,6 +93,8 @@ DENIED_SENSES = {
     ("crossbreeding", "a7af12a8bf"), # this sense applies animal-breeding language to interracial human reproduction ("especially by white and non-white persons"); dehumanizing racial framing
     ("baggage", "07134bc64c"),   # derogatory, gendered term: "a worthless or immoral woman"
     ("retard", "bfb72bd667"),    # ableist slur (this sense: "a person of subnormal intelligence")
+    ("idiocy", "b42d2da0bb"),    # outdated clinical/ableist term (this sense: "extreme mental retardation")
+    ("idiotic", "c3519c5de6"),   # outdated clinical/ableist term (this sense: "having a mental age of three to seven years")
     # obscenities
     ("cock", "dbe472b674"),      # obscene term for penis
     ("prick", "b42157a643"),     # obscene term for penis
@@ -141,6 +143,8 @@ DENIED_SENSES = {
     ("penetration", "b8841f7824"), # this sense: explicit sexual-anatomical act
     ("fetish", "c6073034bb"),    # this sense: explicit sexual paraphilia definition
     ("screw", "f40552631a"),     # crude slang for sexual intercourse
+    ("hump", "cdd9edf6ab"),      # crude slang for sexual intercourse (this sense)
+    ("immodesty", "5ebafacc8b"), # this sense: explicit sexual/exhibitionism definition
     ("strip", "a7566c208e"),     # this sense: striptease, erotic entertainment
     ("ass", "49e31b3efc"),       # crude slang for sexual intercourse
     ("assault", "dc3f9e3a8e"),   # this sense: to rape
