@@ -90,6 +90,7 @@ DENIED_SENSES = {
     ("shrimp", "ca64ffee89"),    # disparaging term for small people (this sense)
     ("softness", "f5a4ae3c81"),  # homophobic/gendered insult sense
     ("frog", "540a21054d"),      # ethnic slur for a French person (this sense)
+    ("baggage", "07134bc64c"),   # derogatory, gendered term: "a worthless or immoral woman"
     # obscenities
     ("cock", "dbe472b674"),      # obscene term for penis
     ("prick", "b42157a643"),     # obscene term for penis
@@ -123,6 +124,7 @@ DENIED_SENSES = {
     ("egg", "a3d6f170a4"),       # this sense is testicle's definition, misfiled under "egg"
     ("planet", "bc03f09ee7"),    # this sense ("a person who follows or serves another") is satellite's, misfiled under "planet"
     ("shout", "5ff04b2535"),     # this sense ("use foul or abusive language towards") is a different word's (e.g. "curse"/"revile"), misfiled under "shout"
+    ("bonus", "51bfa5bf35"),     # this sense ("anything that tends to arouse") is disconnected from any real meaning of "bonus"; almost certainly misfiled
     # structurally unclozable: the answer is spelled identically to one of the
     # most common function words in English, so the leak-check (which forbids
     # any other occurrence of the word's own spelling in the sentence) makes a
