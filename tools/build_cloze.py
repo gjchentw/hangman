@@ -106,6 +106,7 @@ DENIED_SENSES = {
     ("ice", "923def2412"),       # slang for methamphetamine (this sense)
     ("key", "8ab8d082ab"),       # slang for a kilogram of narcotics (this sense)
     ("rope", "76f60556bb"),      # street name for flunitrazepam (a date-rape drug)
+    ("soap", "3be6a07689"),      # street name for gamma hydroxybutyrate (a date-rape drug)
     # sexually explicit, inappropriate for an exam-prep vocabulary game
     ("feel", "815234b322"),      # this sense: manual sexual stimulation
     ("love", "41469d1b21"),      # this sense: sexual intercourse
