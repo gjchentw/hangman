@@ -113,6 +113,8 @@ DENIED_SENSES = {
     ("jet", "f58231dc3c"),       # street name for ketamine
     ("pot", "379647ed83"),       # street name for marijuana
     ("superman", "39118e8b8d"),  # street name for LSD
+    ("upper", "3eebf95724"),     # slang for a CNS stimulant drug (amphetamines)
+    ("weed", "ce5445de32"),      # street name for marijuana
     # sexually explicit, inappropriate for an exam-prep vocabulary game
     ("feel", "815234b322"),      # this sense: manual sexual stimulation
     ("love", "41469d1b21"),      # this sense: sexual intercourse
@@ -132,6 +134,7 @@ DENIED_SENSES = {
     ("maid", "91179860d3"),      # this sense: "an unmarried girl (especially a virgin)" ties status to virginity
     ("peach", "16433fcde2"),     # this sense: "a very attractive or seductive looking woman"
     ("pure", "9409ea5db6"),      # this sense: "in a state of sexual virginity" ties status to virginity
+    ("virtue", "a51124f412"),    # this sense: "morality with respect to sexual relations" ties status to chastity
     # factually wrong definitions (wordset/WordNet data errors)
     ("egg", "a3d6f170a4"),       # this sense is testicle's definition, misfiled under "egg"
     ("planet", "bc03f09ee7"),    # this sense ("a person who follows or serves another") is satellite's, misfiled under "planet"
