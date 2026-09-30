@@ -144,6 +144,7 @@ DENIED_SENSES = {
     ("assault", "86b7121343"),   # this sense: the crime of rape
     ("outrage", "08a3283020"),   # this sense: "force (someone) to have sex against their will"
     ("grope", "22f5284865"),     # this sense: nonconsensual sexual touching/assault
+    ("bondage", "286601d473"),   # this sense: explicit BDSM sexual practice
     # the headword "rape" is inescapably and predominantly associated with
     # sexual violence when used to mean violence/despoiling of any kind,
     # unlike "assault" (above) whose non-sexual-violence senses have
