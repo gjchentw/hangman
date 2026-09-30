@@ -112,6 +112,7 @@ DENIED_SENSES = {
     ("dot", "91a3dbdf66"),       # street name for lysergic acid diethylamide (LSD)
     ("jet", "f58231dc3c"),       # street name for ketamine
     ("pot", "379647ed83"),       # street name for marijuana
+    ("superman", "39118e8b8d"),  # street name for LSD
     # sexually explicit, inappropriate for an exam-prep vocabulary game
     ("feel", "815234b322"),      # this sense: manual sexual stimulation
     ("love", "41469d1b21"),      # this sense: sexual intercourse
