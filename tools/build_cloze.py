@@ -115,6 +115,7 @@ DENIED_SENSES = {
     ("superman", "39118e8b8d"),  # street name for LSD
     ("deck", "1d39b69bf1"),      # street name for a packet of illegal drugs
     ("dose", "354d9b6271"),      # street name for LSD
+    ("pane", "b2a3667f32"),      # street name for LSD
     ("dose", "a475e97a0c"),      # crude slang for a sexually transmitted infection
     ("upper", "3eebf95724"),     # slang for a CNS stimulant drug (amphetamines)
     ("weed", "ce5445de32"),      # street name for marijuana
