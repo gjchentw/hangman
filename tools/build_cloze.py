@@ -89,6 +89,7 @@ DENIED_SENSES = {
     ("riffraff", "4eba077c2f"),  # disparaging term for common people
     ("shrimp", "ca64ffee89"),    # disparaging term for small people (this sense)
     ("softness", "f5a4ae3c81"),  # homophobic/gendered insult sense
+    ("frog", "540a21054d"),      # ethnic slur for a French person (this sense)
     # obscenities
     ("cock", "dbe472b674"),      # obscene term for penis
     ("prick", "b42157a643"),     # obscene term for penis
@@ -100,6 +101,8 @@ DENIED_SENSES = {
     ("bull", "3eccbb5d2f"),      # obscene slang ("bullshit") for behavior
     # drug slang, inappropriate for an exam-prep vocabulary game
     ("chalk", "6bef8be884"),     # slang for methamphetamine
+    ("glass", "43f85fc3a1"),     # slang for methamphetamine (this sense)
+    ("grass", "6f816c77eb"),     # slang for marijuana (this sense)
     # sexually explicit, inappropriate for an exam-prep vocabulary game
     ("feel", "815234b322"),      # this sense: manual sexual stimulation
     # factually wrong definitions (wordset/WordNet data errors)
