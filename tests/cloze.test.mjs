@@ -117,13 +117,13 @@ describe("the word bank", () => {
   after(() => g.close());
 
   test("is matched on base form; a word with no cloze is listed as unavailable", async () => {
-    await g.load("fall,fell,ability");
+    await g.load("fall,fell,zzzqqq");
     assert.equal(g.$("count-ok").textContent, "1");
-    assert.equal(g.$("missing-list").textContent, "fellability");
+    assert.equal(g.$("missing-list").textContent, "fellzzzqqq");
   });
 
   test("an unavailable word is never drawn", async () => {
-    await g.play("fall,ability");
+    await g.play("fall,zzzqqq");
     for (let round = 0; round < 20; round++) {
       assert.equal(g.answer(), "____");
       g.type("abcdefghijklmnopqrstuvwxyz");
