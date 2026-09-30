@@ -100,6 +100,7 @@ DENIED_SENSES = {
     ("slit", "9ebcaf78ff"),      # obscene term for female genitals (this sense)
     ("dirt", "554c8fadd8"),      # obscene term for feces (this sense)
     ("bull", "3eccbb5d2f"),      # obscene slang ("bullshit") for behavior
+    ("nut", "a36c26ef92"),       # obscene slang for testicle
     # drug slang, inappropriate for an exam-prep vocabulary game
     ("chalk", "6bef8be884"),     # slang for methamphetamine
     ("glass", "43f85fc3a1"),     # slang for methamphetamine (this sense)
