@@ -114,12 +114,14 @@ DENIED_SENSES = {
     ("neck", "9e7d9b1f64"),      # this sense: fondle with sexual passion ("necking")
     ("relation", "e7111c9574"), # this sense: the act of sexual procreation
     ("scarf", "8ce28672d5"),     # this sense: autoerotic asphyxiation
+    ("bush", "72a3839aa1"),      # this sense: pubic hair
     # prostitution-related, inappropriate for an exam-prep vocabulary game
     ("madam", "beb6da0c20"),     # this sense: a woman who runs a brothel
     # objectifying/dated stereotype, inappropriate for an exam-prep vocabulary game
     ("lovely", "3d3b3b8df7"),    # this sense: "a very pretty girl who works as a photographer's model"
     ("sister", "b146bf5ae9"),    # this sense: slang term of address for attractive young women
     ("skirt", "cebecbe43d"),     # this sense: informal term for a (young) woman
+    ("chick", "af33a17905"),     # this sense: informal term for a (young) woman
     # factually wrong definitions (wordset/WordNet data errors)
     ("egg", "a3d6f170a4"),       # this sense is testicle's definition, misfiled under "egg"
     ("planet", "bc03f09ee7"),    # this sense ("a person who follows or serves another") is satellite's, misfiled under "planet"
