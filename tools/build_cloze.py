@@ -118,6 +118,7 @@ DENIED_SENSES = {
     ("pane", "b2a3667f32"),      # street name for LSD
     ("dose", "a475e97a0c"),      # crude slang for a sexually transmitted infection
     ("upper", "3eebf95724"),     # slang for a CNS stimulant drug (amphetamines)
+    ("crank", "b35ef109d2"),     # slang for methamphetamine
     ("weed", "ce5445de32"),      # street name for marijuana
     ("joint", "e1b868e3b3"),     # slang for a marijuana cigarette
     # sexually explicit, inappropriate for an exam-prep vocabulary game
@@ -128,6 +129,7 @@ DENIED_SENSES = {
     ("congress", "26e696c163"), # this sense: "the act of sexual procreation between a man and a woman"
     ("scarf", "8ce28672d5"),     # this sense: autoerotic asphyxiation
     ("bush", "72a3839aa1"),      # this sense: pubic hair
+    ("crab", "583a599e69"),      # this sense: pubic lice
     ("seed", "2eb4a59b2b"),      # this sense: semen ("ejaculated by the male genital tract")
     ("sex", "751dbc0659"),       # this sense: "the feelings resulting from the urge to gratify sexual impulses"
     ("penetrate", "8923578a40"), # this sense: explicit sexual-anatomical act
