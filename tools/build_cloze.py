@@ -118,6 +118,7 @@ DENIED_SENSES = {
     ("dose", "a475e97a0c"),      # crude slang for a sexually transmitted infection
     ("upper", "3eebf95724"),     # slang for a CNS stimulant drug (amphetamines)
     ("weed", "ce5445de32"),      # street name for marijuana
+    ("joint", "e1b868e3b3"),     # slang for a marijuana cigarette
     # sexually explicit, inappropriate for an exam-prep vocabulary game
     ("feel", "815234b322"),      # this sense: manual sexual stimulation
     ("love", "41469d1b21"),      # this sense: sexual intercourse
