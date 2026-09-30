@@ -115,6 +115,7 @@ DENIED_SENSES = {
     ("lovely", "3d3b3b8df7"),    # this sense: "a very pretty girl who works as a photographer's model"
     # factually wrong definitions (wordset/WordNet data errors)
     ("egg", "a3d6f170a4"),       # this sense is testicle's definition, misfiled under "egg"
+    ("planet", "bc03f09ee7"),    # this sense ("a person who follows or serves another") is satellite's, misfiled under "planet"
     # structurally unclozable: the answer is spelled identically to one of the
     # most common function words in English, so the leak-check (which forbids
     # any other occurrence of the word's own spelling in the sentence) makes a
