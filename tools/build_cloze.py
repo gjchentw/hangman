@@ -155,6 +155,7 @@ DENIED_SENSES = {
     ("planet", "bc03f09ee7"),    # this sense ("a person who follows or serves another") is satellite's, misfiled under "planet"
     ("shout", "5ff04b2535"),     # this sense ("use foul or abusive language towards") is a different word's (e.g. "curse"/"revile"), misfiled under "shout"
     ("bonus", "51bfa5bf35"),     # this sense ("anything that tends to arouse") is disconnected from any real meaning of "bonus"; almost certainly misfiled
+    ("execution", "d822604427"), # this sense ("unlawful premeditated killing") is murder's definition; execution means lawful/judicial killing, the opposite connotation
     # structurally unclozable: the answer is spelled identically to one of the
     # most common function words in English, so the leak-check (which forbids
     # any other occurrence of the word's own spelling in the sentence) makes a
