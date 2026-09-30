@@ -63,16 +63,19 @@ META_DEF = re.compile(
 BLANK_AFFIX = re.compile(r"[A-Za-z'’]\{\{blank\}\}|\{\{blank\}\}[A-Za-z'’]")
 ANSWER_RE = re.compile(r"^[a-z]+(-[a-z]+)*$")
 
-# A handful of wordset senses are slurs or vulgar/obscene terms that carry no
-# `labels` tag, so the usable() filter below lets them through unless they are
-# named here explicitly. Found by scanning exam-word definitions for
-# "offensive"/"disparaging"/"vulgar"/etc. and reading every hit by hand - most
-# hits were ordinary vocabulary (disgusting, curse, attack) whose *definition*
-# happens to contain one of those words; these are the ones where the *word
-# itself*, in this specific sense, is the slur or obscenity. Excluded by
+# Wordset senses that must never be clozed, regardless of who or what wrote
+# the entry - not just slurs. Some carry no `labels` tag, so the usable()
+# filter below would otherwise let them through, and they resurface in every
+# --todo call until named here. Found two ways: scanning exam-word
+# definitions for "offensive"/"disparaging"/"vulgar"/etc. and reading every
+# hit by hand (most were ordinary vocabulary - disgusting, curse, attack -
+# whose *definition* merely contains one of those words, and stayed in); and
+# a data error caught during the meaning read of an actual batch. Excluded by
 # (word, sense id): every other sense of these words (e.g. "tool" the
-# implement, "shaft" of an arrow, "queen" the royal title) is unaffected.
+# implement, "chalk" the calcite stick, "queen" the royal title) is
+# unaffected.
 DENIED_SENSES = {
+    # slurs
     ("boy", "e5e741cff0"),       # ethnic slur for a Black man
     ("spade", "78494b4b57"),     # ethnic slur for a Black person
     ("negro", "a5b0461378"),     # dated, offensive racial term
@@ -80,6 +83,13 @@ DENIED_SENSES = {
     ("fagot", "0cc35f2c46"),     # anti-gay slur
     ("fairy", "57f596ca2f"),     # anti-gay slur (this sense)
     ("queen", "a0f666279b"),     # anti-gay slur (this sense)
+    ("hillbilly", "451c0f0b20"), # disparaging regional/class term
+    ("mongrel", "35cb5be8f2"),   # derogatory-term sense (this sense)
+    ("rabble", "5105245aba"),    # disparaging term for common people
+    ("riffraff", "4eba077c2f"),  # disparaging term for common people
+    ("shrimp", "ca64ffee89"),    # disparaging term for small people (this sense)
+    ("softness", "f5a4ae3c81"),  # homophobic/gendered insult sense
+    # obscenities
     ("cock", "dbe472b674"),      # obscene term for penis
     ("prick", "b42157a643"),     # obscene term for penis
     ("shaft", "456a2873a7"),     # obscene term for penis (this sense)
@@ -88,12 +98,10 @@ DENIED_SENSES = {
     ("slit", "9ebcaf78ff"),      # obscene term for female genitals (this sense)
     ("dirt", "554c8fadd8"),      # obscene term for feces (this sense)
     ("bull", "3eccbb5d2f"),      # obscene slang ("bullshit") for behavior
-    ("hillbilly", "451c0f0b20"), # disparaging regional/class term
-    ("mongrel", "35cb5be8f2"),   # derogatory-term sense (this sense)
-    ("rabble", "5105245aba"),    # disparaging term for common people
-    ("riffraff", "4eba077c2f"),  # disparaging term for common people
-    ("shrimp", "ca64ffee89"),    # disparaging term for small people (this sense)
-    ("softness", "f5a4ae3c81"),  # homophobic/gendered insult sense
+    # drug slang, inappropriate for an exam-prep vocabulary game
+    ("chalk", "6bef8be884"),     # slang for methamphetamine
+    # factually wrong definitions (wordset/WordNet data errors)
+    ("egg", "a3d6f170a4"),       # this sense is testicle's definition, misfiled under "egg"
 }
 
 
