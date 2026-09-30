@@ -120,6 +120,7 @@ DENIED_SENSES = {
     ("love", "41469d1b21"),      # this sense: sexual intercourse
     ("neck", "9e7d9b1f64"),      # this sense: fondle with sexual passion ("necking")
     ("relation", "e7111c9574"), # this sense: the act of sexual procreation
+    ("congress", "26e696c163"), # this sense: "the act of sexual procreation between a man and a woman"
     ("scarf", "8ce28672d5"),     # this sense: autoerotic asphyxiation
     ("bush", "72a3839aa1"),      # this sense: pubic hair
     ("seed", "2eb4a59b2b"),      # this sense: semen ("ejaculated by the male genital tract")
