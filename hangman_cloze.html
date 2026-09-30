@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hant" data-variant="__VARIANT__">
+<html lang="zh-Hant" data-variant="cloze">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -396,13 +396,13 @@
   "use strict";
 
   // "plain" = 釋義版 (hangman.html), "cloze" = 克漏字版 (hangman_cloze.html).
-  const VARIANT = "__VARIANT__";
+  const VARIANT = "cloze";
   const CLOZE = VARIANT === "cloze";
 
   // Each build embeds only the payloads its game uses; the rest are "".
-  const DICT_B64 = "__DICT_PAYLOAD__";
-  const ZH_B64 = "__ZH_PAYLOAD__";
-  const CLOZE_B64 = "__CLOZE_PAYLOAD__";
+  const DICT_B64 = "";
+  const ZH_B64 = "";
+  const CLOZE_B64 = "H4sIAAAAAAAC/6uuBQBDv6ajAgAAAA==";
 
   const MAX_WRONG = 6;
   // The two games share an origin (on Pages, and on file:// in most browsers),

@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Build hangman.html by embedding the wordset dictionary into the template.
+"""Build both games from the one template.
+
+hangman.html (the definitions game) embeds the wordset dictionary and the
+Chinese glosses; hangman_cloze.html (the cloze game) embeds only its clozes.
+Each is the same template with __VARIANT__ set and only its own payloads
+filled in.
 
 Downloads the 26 wordset-dictionary letter files, trims each entry down to
 ``word -> [[definition, speech_part], ...]``, then gzips + base64-encodes the
@@ -34,9 +39,12 @@ WORD_RE = re.compile(r"^[a-z]+(-[a-z]+)*$")
 REPO_ROOT = Path(__file__).resolve().parent.parent
 TEMPLATE_PATH = REPO_ROOT / "tools" / "hangman.template.html"
 OUTPUT_PATH = REPO_ROOT / "hangman.html"
+CLOZE_OUTPUT_PATH = REPO_ROOT / "hangman_cloze.html"
 ZH_PATH = REPO_ROOT / "tools" / "zh_dict.json"
+VARIANT_PLACEHOLDER = "__VARIANT__"
 PLACEHOLDER = "__DICT_PAYLOAD__"
 ZH_PLACEHOLDER = "__ZH_PAYLOAD__"
+CLOZE_PLACEHOLDER = "__CLOZE_PAYLOAD__"
 
 
 def fetch_letter(letter: str, cache_dir: Path, refresh: bool) -> bytes:
@@ -120,6 +128,14 @@ def build_payload(entries: dict) -> tuple[str, dict]:
     return payload, sizes
 
 
+def render(template: str, variant: str, payloads: dict) -> str:
+    """Fill the variant flag and the payload slots of the template."""
+    out = template.replace(VARIANT_PLACEHOLDER, variant)
+    for name, value in payloads.items():
+        out = out.replace(name, value)
+    return out
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -154,13 +170,25 @@ def main() -> int:
     zh = {w: t for w, t in zh.items() if w in entries}
     zh_payload, zh_sizes = build_payload(zh)
 
+    # The cloze game's content, validated; empty until authored clozes exist.
+    cloze = {}
+    cloze_payload, cloze_sizes = build_payload(cloze)
+
     template = TEMPLATE_PATH.read_text(encoding="utf-8")
-    for name in (PLACEHOLDER, ZH_PLACEHOLDER):
+    for name in (VARIANT_PLACEHOLDER, PLACEHOLDER, ZH_PLACEHOLDER, CLOZE_PLACEHOLDER):
         if name not in template:
             print(f"error: {name} not found in template", file=sys.stderr)
             return 1
+
+    # Each game carries only its own data; the other slots are left empty.
     OUTPUT_PATH.write_text(
-        template.replace(PLACEHOLDER, payload).replace(ZH_PLACEHOLDER, zh_payload),
+        render(template, "plain", {PLACEHOLDER: payload, ZH_PLACEHOLDER: zh_payload,
+                                   CLOZE_PLACEHOLDER: ""}),
+        encoding="utf-8",
+    )
+    CLOZE_OUTPUT_PATH.write_text(
+        render(template, "cloze", {PLACEHOLDER: "", ZH_PLACEHOLDER: "",
+                                   CLOZE_PLACEHOLDER: cloze_payload}),
         encoding="utf-8",
     )
 
@@ -178,7 +206,10 @@ def main() -> int:
     print(f"  zh trimmed JSON      : {mb(zh_sizes['json_bytes'])}", file=sys.stderr)
     print(f"  zh gzipped           : {mb(zh_sizes['gzip_bytes'])}", file=sys.stderr)
     print(f"  zh base64 (embedded) : {mb(zh_sizes['b64_bytes'])}", file=sys.stderr)
+    print(f"  cloze words          : {len(cloze):,}", file=sys.stderr)
+    print(f"  cloze base64 (embed) : {mb(cloze_sizes['b64_bytes'])}", file=sys.stderr)
     print(f"\nWrote {OUTPUT_PATH} ({mb(OUTPUT_PATH.stat().st_size)})", file=sys.stderr)
+    print(f"Wrote {CLOZE_OUTPUT_PATH} ({mb(CLOZE_OUTPUT_PATH.stat().st_size)})", file=sys.stderr)
     return 0
 
 
