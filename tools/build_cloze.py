@@ -111,6 +111,7 @@ DENIED_SENSES = {
     ("soap", "3be6a07689"),      # street name for gamma hydroxybutyrate (a date-rape drug)
     ("dot", "91a3dbdf66"),       # street name for lysergic acid diethylamide (LSD)
     ("jet", "f58231dc3c"),       # street name for ketamine
+    ("pot", "379647ed83"),       # street name for marijuana
     # sexually explicit, inappropriate for an exam-prep vocabulary game
     ("feel", "815234b322"),      # this sense: manual sexual stimulation
     ("love", "41469d1b21"),      # this sense: sexual intercourse
@@ -126,6 +127,7 @@ DENIED_SENSES = {
     ("skirt", "cebecbe43d"),     # this sense: informal term for a (young) woman
     ("chick", "af33a17905"),     # this sense: informal term for a (young) woman
     ("maid", "91179860d3"),      # this sense: "an unmarried girl (especially a virgin)" ties status to virginity
+    ("peach", "16433fcde2"),     # this sense: "a very attractive or seductive looking woman"
     # factually wrong definitions (wordset/WordNet data errors)
     ("egg", "a3d6f170a4"),       # this sense is testicle's definition, misfiled under "egg"
     ("planet", "bc03f09ee7"),    # this sense ("a person who follows or serves another") is satellite's, misfiled under "planet"
