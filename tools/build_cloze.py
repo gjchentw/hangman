@@ -124,6 +124,7 @@ DENIED_SENSES = {
     ("weed", "ce5445de32"),      # street name for marijuana
     ("joint", "e1b868e3b3"),     # slang for a marijuana cigarette
     ("nickel", "6816de714c"),    # slang for a $5 bag of drugs
+    ("dime", "d401f526e2"),      # street name for a $10 bag of drugs
     # sexually explicit, inappropriate for an exam-prep vocabulary game
     ("feel", "815234b322"),      # this sense: manual sexual stimulation
     ("love", "41469d1b21"),      # this sense: sexual intercourse
