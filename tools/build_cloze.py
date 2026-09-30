@@ -109,6 +109,7 @@ DENIED_SENSES = {
     ("rope", "76f60556bb"),      # street name for flunitrazepam (a date-rape drug)
     ("soap", "3be6a07689"),      # street name for gamma hydroxybutyrate (a date-rape drug)
     ("dot", "91a3dbdf66"),       # street name for lysergic acid diethylamide (LSD)
+    ("jet", "f58231dc3c"),       # street name for ketamine
     # sexually explicit, inappropriate for an exam-prep vocabulary game
     ("feel", "815234b322"),      # this sense: manual sexual stimulation
     ("love", "41469d1b21"),      # this sense: sexual intercourse
