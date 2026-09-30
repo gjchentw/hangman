@@ -129,6 +129,7 @@ DENIED_SENSES = {
     ("nickel", "6816de714c"),    # slang for a $5 bag of drugs
     ("dime", "d401f526e2"),      # street name for a $10 bag of drugs
     ("locoweed", "f1e09ea81c"),  # street names for marijuana (this sense)
+    ("scoop", "c4f58f262d"),     # street name for gamma hydroxybutyrate (a date-rape drug)
     # sexually explicit, inappropriate for an exam-prep vocabulary game
     ("feel", "815234b322"),      # this sense: manual sexual stimulation
     ("love", "41469d1b21"),      # this sense: sexual intercourse
