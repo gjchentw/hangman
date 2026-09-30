@@ -1,0 +1,135 @@
+[
+ {
+  "_expect": "unknown_word",
+  "w": "zzzqqq",
+  "id": "0000000000",
+  "a": "zzzqqq",
+  "c": "A {{blank}} here."
+ },
+ {
+  "_expect": "unknown_sense",
+  "w": "expect",
+  "id": "0000000000",
+  "a": "expect",
+  "c": "I {{blank}} so."
+ },
+ {
+  "_expect": "blank_count",
+  "w": "expect",
+  "id": "9c73bd8aab",
+  "a": "expecting",
+  "c": "She's {{blank}} a baby, {{blank}} in June."
+ },
+ {
+  "_expect": "blank_affix",
+  "w": "mind",
+  "id": "95a359ad9f",
+  "a": "mind",
+  "c": "He's one of the great {{blank}}s of his generation."
+ },
+ {
+  "_expect": "sentences",
+  "w": "plan",
+  "id": "cec980059a",
+  "a": "plan",
+  "c": "We need a {{blank}}. Now. Today. Seriously."
+ },
+ {
+  "_expect": "length",
+  "w": "plan",
+  "id": "e9a7a8ad17",
+  "a": "plan",
+  "c": "We need a {{blank}} that covers the budget and the venue and the catering and the music and the guest list and the parking and the flowers and the photographer and the cake and the seating chart and the backup venue in case it rains on the day and the transport for the older relatives who cannot drive themselves anymore, honestly."
+ },
+ {
+  "_expect": "answer_chars",
+  "w": "expect",
+  "id": "e9b6e8d359",
+  "a": "Expected",
+  "c": "I {{blank}} better from you, to be honest."
+ },
+ {
+  "_expect": "answer_form",
+  "w": "fall",
+  "id": "8bb789f8cb",
+  "a": "falled",
+  "c": "He slipped and {{blank}} on the ice."
+ },
+ {
+  "_expect": "answer_form",
+  "w": "mind",
+  "id": "1ca1e5c986",
+  "a": "minded",
+  "c": "Reading every night keeps her {{blank}} sharp."
+ },
+ {
+  "_expect": "answer_form",
+  "w": "quick",
+  "id": "87532d39c5",
+  "a": "quickly",
+  "c": "The repair was done {{blank}} and cheaply."
+ },
+ {
+  "_expect": "leak_sentence",
+  "w": "expect",
+  "id": "88985be305",
+  "a": "expect",
+  "c": "I {{blank}} it'll rain. Everyone expected it anyway."
+ },
+ {
+  "_expect": "leak_sentence",
+  "w": "quick",
+  "id": "9aa2ad8c5f",
+  "a": "quick",
+  "c": "It was a {{blank}} visit - she left as quickly as she came."
+ },
+ {
+  "_expect": "leak_definition",
+  "w": "fall",
+  "id": "5395cfb5e9",
+  "a": "falls",
+  "c": "The job {{blank}} to whoever draws the short straw."
+ },
+ {
+  "_expect": null,
+  "w": "plan",
+  "id": "5d83bcf744",
+  "a": "plan",
+  "c": "The architect pinned the {{blank}} to the wall so we could see the rooms."
+ },
+ {
+  "_expect": "duplicate",
+  "w": "plan",
+  "id": "5d83bcf744",
+  "a": "plans",
+  "c": "She spread the {{blank}} across the kitchen table."
+ },
+ {
+  "_expect": null,
+  "w": "fall",
+  "id": "8d87914da3",
+  "a": "fell",
+  "c": "She {{blank}} back into the armchair, completely worn out."
+ },
+ {
+  "_expect": null,
+  "w": "fall",
+  "id": "b7a461008f",
+  "a": "falls",
+  "c": "The garden {{blank}} away steeply toward the river."
+ },
+ {
+  "_expect": null,
+  "w": "fall",
+  "id": "3d8ca962a0",
+  "a": "fell",
+  "c": "The dominoes {{blank}} one after another across the table."
+ },
+ {
+  "_expect": "over_cap",
+  "w": "fall",
+  "id": "552ccd8ca8",
+  "a": "fell",
+  "c": "The old regime finally {{blank}} after years of protests."
+ }
+]

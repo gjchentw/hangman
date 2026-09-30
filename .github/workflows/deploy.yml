@@ -21,6 +21,14 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
+      # The cloze validator reads wordset senses; the letter files are fetched
+      # on first use, so cache them rather than download 56 MB on every run.
+      - uses: actions/cache@v4
+        with:
+          path: tools/.wordset-cache
+          key: wordset-v1
+      - name: Validate authored clozes
+        run: python3 tools/build_cloze.py
       - run: npm test
 
   # A failing test blocks the deploy; pull requests are tested but never deployed.

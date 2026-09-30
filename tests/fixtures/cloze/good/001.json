@@ -1,0 +1,7 @@
+[
+ {"w": "expect", "id": "9c73bd8aab", "a": "expecting", "c": "She's {{blank}} a baby in June. They only told the family last night."},
+ {"w": "fall", "id": "552ccd8ca8", "a": "fell", "c": "The old regime finally {{blank}} after years of protests."},
+ {"w": "mind", "id": "95a359ad9f", "a": "minds", "c": "He's one of the great {{blank}} of his generation, though you'd never guess it from talking to him."},
+ {"w": "quick", "id": "96d7557b1b", "a": "quicker", "c": "Taking the train turned out {{blank}} than driving in rush hour."},
+ {"w": "plan", "id": "cec980059a", "a": "plan", "c": "We need a proper {{blank}} before Monday. Right now we're just winging it."}
+]
