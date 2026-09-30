@@ -148,6 +148,7 @@ DENIED_SENSES = {
     ("screw", "f40552631a"),     # crude slang for sexual intercourse
     ("hump", "cdd9edf6ab"),      # crude slang for sexual intercourse (this sense)
     ("immodesty", "5ebafacc8b"), # this sense: explicit sexual/exhibitionism definition
+    ("stimulation", "32d085e8e1"), # this sense: "mutual sexual fondling prior to sexual intercourse"
     ("strip", "a7566c208e"),     # this sense: striptease, erotic entertainment
     ("ass", "49e31b3efc"),       # crude slang for sexual intercourse
     ("assault", "dc3f9e3a8e"),   # this sense: to rape
