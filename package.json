@@ -1,0 +1,12 @@
+{
+  "name": "hangman",
+  "private": true,
+  "type": "module",
+  "description": "Test harness for the offline Hangman games",
+  "scripts": {
+    "test": "node --test \"tests/**/*.test.mjs\""
+  },
+  "devDependencies": {
+    "jsdom": "^30.1.1"
+  }
+}
