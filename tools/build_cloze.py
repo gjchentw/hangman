@@ -95,6 +95,7 @@ DENIED_SENSES = {
     ("retard", "bfb72bd667"),    # ableist slur (this sense: "a person of subnormal intelligence")
     ("idiocy", "b42d2da0bb"),    # outdated clinical/ableist term (this sense: "extreme mental retardation")
     ("idiotic", "c3519c5de6"),   # outdated clinical/ableist term (this sense: "having a mental age of three to seven years")
+    ("moron", "086b22943f"),     # outdated clinical/eugenics-era term (this sense: "a person of subnormal intelligence"); this word's only sense
     # obscenities
     ("cock", "dbe472b674"),      # obscene term for penis
     ("prick", "b42157a643"),     # obscene term for penis
