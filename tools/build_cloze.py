@@ -107,8 +107,19 @@ DENIED_SENSES = {
     ("key", "8ab8d082ab"),       # slang for a kilogram of narcotics (this sense)
     # sexually explicit, inappropriate for an exam-prep vocabulary game
     ("feel", "815234b322"),      # this sense: manual sexual stimulation
+    ("love", "41469d1b21"),      # this sense: sexual intercourse
+    ("neck", "9e7d9b1f64"),      # this sense: fondle with sexual passion ("necking")
+    # prostitution-related, inappropriate for an exam-prep vocabulary game
+    ("madam", "beb6da0c20"),     # this sense: a woman who runs a brothel
+    # objectifying/dated stereotype, inappropriate for an exam-prep vocabulary game
+    ("lovely", "3d3b3b8df7"),    # this sense: "a very pretty girl who works as a photographer's model"
     # factually wrong definitions (wordset/WordNet data errors)
     ("egg", "a3d6f170a4"),       # this sense is testicle's definition, misfiled under "egg"
+    # structurally unclozable: the answer is spelled identically to one of the
+    # most common function words in English, so the leak-check (which forbids
+    # any other occurrence of the word's own spelling in the sentence) makes a
+    # natural sentence essentially impossible to write
+    ("in", "bb6db5df97"),        # "in" the length unit (=inch) collides with "in" the preposition
 }
 
 
