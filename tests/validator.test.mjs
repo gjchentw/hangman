@@ -44,6 +44,11 @@ describe("clozes that break a rule", () => {
 });
 
 describe("the offensive-sense denylist", () => {
+  test("an authored entry pointing at a denied sense is rejected, not just hidden from --todo", () => {
+    const r = validate(`${FIXTURES}/bad`);
+    assert.ok(r.rejects.some((x) => x.code === "denied_sense"), "check() itself blocks it");
+  });
+
   test("a denied sense never appears in the worklist, even with room in the word's cap", () => {
     const items = todo(`${FIXTURES}/good`, 20, "boy,spade,negro,fag,fagot,queen,tool,shaft,snatch,mongrel,shrimp");
     for (const denied of ["e5e741cff0", "78494b4b57", "a5b0461378", "c2342f2be1", "0cc35f2c46"]) {

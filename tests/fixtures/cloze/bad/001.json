@@ -131,5 +131,12 @@
   "id": "552ccd8ca8",
   "a": "fell",
   "c": "The old regime finally {{blank}} after years of protests."
+ },
+ {
+  "_expect": "denied_sense",
+  "w": "boy",
+  "id": "e5e741cff0",
+  "a": "boy",
+  "c": "Hey {{blank}}, come here."
  }
 ]

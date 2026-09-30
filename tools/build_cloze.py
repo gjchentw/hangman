@@ -222,6 +222,8 @@ def check(lex: Lexicon, entry: dict):
     sense = lex.by_id.get((w, sid))
     if not sense:
         return "unknown_sense", f"{sid!r} is not a sense of {w!r}"
+    if (w, sid) in DENIED_SENSES:
+        return "denied_sense", f"{sid!r} of {w!r} is a slur/obscenity, excluded regardless of who authored it"
     if sense["pos"] not in KINDS_FOR:
         return "pos", f"part of speech {sense['pos']!r} has no cloze form"
 
