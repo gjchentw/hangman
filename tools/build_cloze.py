@@ -63,6 +63,39 @@ META_DEF = re.compile(
 BLANK_AFFIX = re.compile(r"[A-Za-z'’]\{\{blank\}\}|\{\{blank\}\}[A-Za-z'’]")
 ANSWER_RE = re.compile(r"^[a-z]+(-[a-z]+)*$")
 
+# A handful of wordset senses are slurs or vulgar/obscene terms that carry no
+# `labels` tag, so the usable() filter below lets them through unless they are
+# named here explicitly. Found by scanning exam-word definitions for
+# "offensive"/"disparaging"/"vulgar"/etc. and reading every hit by hand - most
+# hits were ordinary vocabulary (disgusting, curse, attack) whose *definition*
+# happens to contain one of those words; these are the ones where the *word
+# itself*, in this specific sense, is the slur or obscenity. Excluded by
+# (word, sense id): every other sense of these words (e.g. "tool" the
+# implement, "shaft" of an arrow, "queen" the royal title) is unaffected.
+DENIED_SENSES = {
+    ("boy", "e5e741cff0"),       # ethnic slur for a Black man
+    ("spade", "78494b4b57"),     # ethnic slur for a Black person
+    ("negro", "a5b0461378"),     # dated, offensive racial term
+    ("fag", "c2342f2be1"),       # anti-gay slur
+    ("fagot", "0cc35f2c46"),     # anti-gay slur
+    ("fairy", "57f596ca2f"),     # anti-gay slur (this sense)
+    ("queen", "a0f666279b"),     # anti-gay slur (this sense)
+    ("cock", "dbe472b674"),      # obscene term for penis
+    ("prick", "b42157a643"),     # obscene term for penis
+    ("shaft", "456a2873a7"),     # obscene term for penis (this sense)
+    ("tool", "dc492b0787"),      # obscene term for penis (this sense)
+    ("snatch", "0dcdd3aac5"),    # obscene term for female genitals (this sense)
+    ("slit", "9ebcaf78ff"),      # obscene term for female genitals (this sense)
+    ("dirt", "554c8fadd8"),      # obscene term for feces (this sense)
+    ("bull", "3eccbb5d2f"),      # obscene slang ("bullshit") for behavior
+    ("hillbilly", "451c0f0b20"), # disparaging regional/class term
+    ("mongrel", "35cb5be8f2"),   # derogatory-term sense (this sense)
+    ("rabble", "5105245aba"),    # disparaging term for common people
+    ("riffraff", "4eba077c2f"),  # disparaging term for common people
+    ("shrimp", "ca64ffee89"),    # disparaging term for small people (this sense)
+    ("softness", "f5a4ae3c81"),  # homophobic/gendered insult sense
+}
+
 
 # ---- regular inflection rules, for words ECDICT lists no forms for ---------------
 # They err on the permissive side (both "visited" and "visitted"): the aim is to
@@ -151,7 +184,8 @@ class Lexicon:
     def usable(self, word: str, sense: dict) -> bool:
         d = sense["def"]
         return (sense["pos"] in KINDS_FOR and not sense["labels"] and len(d) >= MIN_DEF_CHARS
-                and not META_DEF.search(d) and not self.leaks(word, d))
+                and not META_DEF.search(d) and not self.leaks(word, d)
+                and (word, sense["id"]) not in DENIED_SENSES)
 
     def targets(self, word: str) -> list:
         """Up to PER_WORD senses to write for, preferring ones wordset illustrates."""

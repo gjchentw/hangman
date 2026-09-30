@@ -43,6 +43,21 @@ describe("clozes that break a rule", () => {
   });
 });
 
+describe("the offensive-sense denylist", () => {
+  test("a denied sense never appears in the worklist, even with room in the word's cap", () => {
+    const items = todo(`${FIXTURES}/good`, 20, "boy,spade,negro,fag,fagot,queen,tool,shaft,snatch,mongrel,shrimp");
+    for (const denied of ["e5e741cff0", "78494b4b57", "a5b0461378", "c2342f2be1", "0cc35f2c46"]) {
+      assert.ok(!items.some((i) => i.id === denied), `sense ${denied} was offered`);
+    }
+  });
+
+  test("a denylisted word's other, ordinary senses are unaffected", () => {
+    const items = todo(`${FIXTURES}/good`, 20, "queen,tool,shaft");
+    assert.ok(items.some((i) => i.w === "queen"), "queen still offers a sense (royalty, insect, etc.)");
+    assert.ok(items.some((i) => i.w === "tool"), "tool still offers a sense (an implement, etc.)");
+  });
+});
+
 describe("the worklist", () => {
   const authored = JSON.parse(readFileSync(`${FIXTURES}/good/001.json`, "utf8"));
   const done = new Set(authored.map((e) => `${e.w}/${e.id}`));
