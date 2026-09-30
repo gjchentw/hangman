@@ -130,6 +130,7 @@ DENIED_SENSES = {
     ("bush", "72a3839aa1"),      # this sense: pubic hair
     ("seed", "2eb4a59b2b"),      # this sense: semen ("ejaculated by the male genital tract")
     ("sex", "751dbc0659"),       # this sense: "the feelings resulting from the urge to gratify sexual impulses"
+    ("penetrate", "8923578a40"), # this sense: explicit sexual-anatomical act
     # prostitution-related, inappropriate for an exam-prep vocabulary game
     ("madam", "beb6da0c20"),     # this sense: a woman who runs a brothel
     # objectifying/dated stereotype, inappropriate for an exam-prep vocabulary game
@@ -141,6 +142,7 @@ DENIED_SENSES = {
     ("peach", "16433fcde2"),     # this sense: "a very attractive or seductive looking woman"
     ("pure", "9409ea5db6"),      # this sense: "in a state of sexual virginity" ties status to virginity
     ("virtue", "a51124f412"),    # this sense: "morality with respect to sexual relations" ties status to chastity
+    ("purity", "f7c0cf67c6"),    # this sense: "a woman's virtue or chastity" ties status to chastity
     # factually wrong definitions (wordset/WordNet data errors)
     ("egg", "a3d6f170a4"),       # this sense is testicle's definition, misfiled under "egg"
     ("planet", "bc03f09ee7"),    # this sense ("a person who follows or serves another") is satellite's, misfiled under "planet"
