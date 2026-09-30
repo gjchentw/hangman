@@ -1,0 +1,7 @@
+{
+  "_comment": "Forms ECDICT's exchange field lacks. Merged into inflections.json by build_inflections.py. Add a form here when the validator rejects an answer that is a genuine inflection.",
+  "be": {"v": ["am", "are"], "p": ["were"]},
+  "get": {"d": ["gotten"]},
+  "hang": {"p": ["hanged"], "d": ["hanged"]},
+  "lie": {"p": ["lied"], "d": ["lied"], "i": ["lying"]}
+}
