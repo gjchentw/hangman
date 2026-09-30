@@ -91,6 +91,7 @@ DENIED_SENSES = {
     ("softness", "f5a4ae3c81"),  # homophobic/gendered insult sense
     ("frog", "540a21054d"),      # ethnic slur for a French person (this sense)
     ("baggage", "07134bc64c"),   # derogatory, gendered term: "a worthless or immoral woman"
+    ("retard", "bfb72bd667"),    # ableist slur (this sense: "a person of subnormal intelligence")
     # obscenities
     ("cock", "dbe472b674"),      # obscene term for penis
     ("prick", "b42157a643"),     # obscene term for penis
