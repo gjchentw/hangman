@@ -119,6 +119,8 @@ DENIED_SENSES = {
     ("relation", "e7111c9574"), # this sense: the act of sexual procreation
     ("scarf", "8ce28672d5"),     # this sense: autoerotic asphyxiation
     ("bush", "72a3839aa1"),      # this sense: pubic hair
+    ("seed", "2eb4a59b2b"),      # this sense: semen ("ejaculated by the male genital tract")
+    ("sex", "751dbc0659"),       # this sense: "the feelings resulting from the urge to gratify sexual impulses"
     # prostitution-related, inappropriate for an exam-prep vocabulary game
     ("madam", "beb6da0c20"),     # this sense: a woman who runs a brothel
     # objectifying/dated stereotype, inappropriate for an exam-prep vocabulary game
