@@ -121,6 +121,7 @@ DENIED_SENSES = {
     ("crank", "b35ef109d2"),     # slang for methamphetamine
     ("weed", "ce5445de32"),      # street name for marijuana
     ("joint", "e1b868e3b3"),     # slang for a marijuana cigarette
+    ("nickel", "6816de714c"),    # slang for a $5 bag of drugs
     # sexually explicit, inappropriate for an exam-prep vocabulary game
     ("feel", "815234b322"),      # this sense: manual sexual stimulation
     ("love", "41469d1b21"),      # this sense: sexual intercourse
@@ -153,6 +154,8 @@ DENIED_SENSES = {
     ("pure", "9409ea5db6"),      # this sense: "in a state of sexual virginity" ties status to virginity
     ("virtue", "a51124f412"),    # this sense: "morality with respect to sexual relations" ties status to chastity
     ("purity", "f7c0cf67c6"),    # this sense: "a woman's virtue or chastity" ties status to chastity
+    # distressing medical content, inappropriate for an exam-prep vocabulary game
+    ("monster", "a6aea95ab0"),   # this sense: "a grossly malformed and usually nonviable fetus"
     # factually wrong definitions (wordset/WordNet data errors)
     ("egg", "a3d6f170a4"),       # this sense is testicle's definition, misfiled under "egg"
     ("planet", "bc03f09ee7"),    # this sense ("a person who follows or serves another") is satellite's, misfiled under "planet"
