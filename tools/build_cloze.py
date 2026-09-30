@@ -105,18 +105,23 @@ DENIED_SENSES = {
     ("grass", "6f816c77eb"),     # slang for marijuana (this sense)
     ("ice", "923def2412"),       # slang for methamphetamine (this sense)
     ("key", "8ab8d082ab"),       # slang for a kilogram of narcotics (this sense)
+    ("rope", "76f60556bb"),      # street name for flunitrazepam (a date-rape drug)
     # sexually explicit, inappropriate for an exam-prep vocabulary game
     ("feel", "815234b322"),      # this sense: manual sexual stimulation
     ("love", "41469d1b21"),      # this sense: sexual intercourse
     ("neck", "9e7d9b1f64"),      # this sense: fondle with sexual passion ("necking")
     ("relation", "e7111c9574"), # this sense: the act of sexual procreation
+    ("scarf", "8ce28672d5"),     # this sense: autoerotic asphyxiation
     # prostitution-related, inappropriate for an exam-prep vocabulary game
     ("madam", "beb6da0c20"),     # this sense: a woman who runs a brothel
     # objectifying/dated stereotype, inappropriate for an exam-prep vocabulary game
     ("lovely", "3d3b3b8df7"),    # this sense: "a very pretty girl who works as a photographer's model"
+    ("sister", "b146bf5ae9"),    # this sense: slang term of address for attractive young women
+    ("skirt", "cebecbe43d"),     # this sense: informal term for a (young) woman
     # factually wrong definitions (wordset/WordNet data errors)
     ("egg", "a3d6f170a4"),       # this sense is testicle's definition, misfiled under "egg"
     ("planet", "bc03f09ee7"),    # this sense ("a person who follows or serves another") is satellite's, misfiled under "planet"
+    ("shout", "5ff04b2535"),     # this sense ("use foul or abusive language towards") is a different word's (e.g. "curse"/"revile"), misfiled under "shout"
     # structurally unclozable: the answer is spelled identically to one of the
     # most common function words in English, so the leak-check (which forbids
     # any other occurrence of the word's own spelling in the sentence) makes a
