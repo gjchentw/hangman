@@ -170,6 +170,7 @@ DENIED_SENSES = {
     ("rape", "e46c4bd1aa"),      # this sense: "the act of despoiling a country in warfare"
     # prostitution-related, inappropriate for an exam-prep vocabulary game
     ("madam", "beb6da0c20"),     # this sense: a woman who runs a brothel
+    ("solicit", "9570e7f48d"),   # this sense: "approach with an offer of sexual favors" (ex: solicited by a prostitute)
     # objectifying/dated stereotype, inappropriate for an exam-prep vocabulary game
     ("lovely", "3d3b3b8df7"),    # this sense: "a very pretty girl who works as a photographer's model"
     ("sister", "b146bf5ae9"),    # this sense: slang term of address for attractive young women
