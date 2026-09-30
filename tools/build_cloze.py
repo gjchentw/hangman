@@ -103,6 +103,8 @@ DENIED_SENSES = {
     ("chalk", "6bef8be884"),     # slang for methamphetamine
     ("glass", "43f85fc3a1"),     # slang for methamphetamine (this sense)
     ("grass", "6f816c77eb"),     # slang for marijuana (this sense)
+    ("ice", "923def2412"),       # slang for methamphetamine (this sense)
+    ("key", "8ab8d082ab"),       # slang for a kilogram of narcotics (this sense)
     # sexually explicit, inappropriate for an exam-prep vocabulary game
     ("feel", "815234b322"),      # this sense: manual sexual stimulation
     # factually wrong definitions (wordset/WordNet data errors)
