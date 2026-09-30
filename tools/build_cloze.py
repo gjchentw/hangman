@@ -135,11 +135,13 @@ DENIED_SENSES = {
     ("seed", "2eb4a59b2b"),      # this sense: semen ("ejaculated by the male genital tract")
     ("sex", "751dbc0659"),       # this sense: "the feelings resulting from the urge to gratify sexual impulses"
     ("penetrate", "8923578a40"), # this sense: explicit sexual-anatomical act
+    ("penetration", "b8841f7824"), # this sense: explicit sexual-anatomical act
     ("screw", "f40552631a"),     # crude slang for sexual intercourse
     ("strip", "a7566c208e"),     # this sense: striptease, erotic entertainment
     ("ass", "49e31b3efc"),       # crude slang for sexual intercourse
     ("assault", "dc3f9e3a8e"),   # this sense: to rape
     ("assault", "86b7121343"),   # this sense: the crime of rape
+    ("outrage", "08a3283020"),   # this sense: "force (someone) to have sex against their will"
     ("grope", "22f5284865"),     # this sense: nonconsensual sexual touching/assault
     # prostitution-related, inappropriate for an exam-prep vocabulary game
     ("madam", "beb6da0c20"),     # this sense: a woman who runs a brothel
