@@ -409,7 +409,8 @@
     bank: [],          // words that made it into the question pool
     missing: [],       // words with no dictionary entry
     bag: [],           // shuffled queue; refilled when exhausted
-    word: "",
+    word: "",        // the bank word: what gets looked up and saved
+    answer: "",      // what the player spells; equals `word` in the definitions game
     defs: [],
     guessed: new Set(),   // easy mode only: letters already tried
     revealed: [],         // per position; the shared truth both modes write to
@@ -589,10 +590,11 @@
   function nextRound() {
     if (!state.bag.length) state.bag = shuffle(state.bank);
     state.word = state.bag.pop();
+    state.answer = state.word;
     state.defs = state.dict[state.word] || [];
     state.guessed = new Set();
     // Non-letters (hyphens) are never guessed, so they start revealed.
-    state.revealed = [...state.word].map((ch) => !isLetter(ch));
+    state.revealed = [...state.answer].map((ch) => !isLetter(ch));
     state.wrong = 0;
     state.phase = "playing";
 
@@ -676,7 +678,7 @@
   function guessStrict(letter) {
     const slot = nextSlot();
     if (slot === -1) return;
-    if (state.word[slot] === letter) {
+    if (state.answer[slot] === letter) {
       state.revealed[slot] = true;
     } else {
       state.wrong++;
@@ -688,8 +690,8 @@
     if (state.guessed.has(letter)) return;
     state.guessed.add(letter);
     let hit = false;
-    for (let i = 0; i < state.word.length; i++) {
-      if (state.word[i] === letter) {
+    for (let i = 0; i < state.answer.length; i++) {
+      if (state.answer[i] === letter) {
         state.revealed[i] = true;
         hit = true;
       }
@@ -743,7 +745,7 @@
 
     const answer = $("answer");
     answer.replaceChildren(
-      ...[...state.word].map((ch, i) => {
+      ...[...state.answer].map((ch, i) => {
         const span = document.createElement("span");
         const known = state.revealed[i];
         span.textContent = known ? ch : lost ? ch : "_";
@@ -766,8 +768,8 @@
       // In strict mode every key stays live and uncoloured; only easy mode
       // spends a letter permanently.
       const used = !strict && state.guessed.has(letter);
-      button.classList.toggle("hit", used && state.word.includes(letter));
-      button.classList.toggle("miss", used && !state.word.includes(letter));
+      button.classList.toggle("hit", used && state.answer.includes(letter));
+      button.classList.toggle("miss", used && !state.answer.includes(letter));
       button.disabled = over || used;
     }
 
@@ -780,7 +782,7 @@
     if (over) {
       $("result").className = `result ${state.phase === "won" ? "win" : "lose"}`;
       $("result-title").textContent = state.phase === "won" ? "答對了！" : "可惜，機會用完了";
-      $("result-word").textContent = state.word;
+      $("result-word").textContent = state.answer;
       $("next").focus();
     }
 
@@ -900,8 +902,8 @@
   }
 
   function speak() {
-    if (!state.word || !("speechSynthesis" in window)) return;
-    const utterance = new SpeechSynthesisUtterance(state.word);
+    if (!state.answer || !("speechSynthesis" in window)) return;
+    const utterance = new SpeechSynthesisUtterance(state.answer);
     if (voice) utterance.voice = voice;
     utterance.lang = voice ? voice.lang : "en-US";
     utterance.pitch = state.voice.pitch;
