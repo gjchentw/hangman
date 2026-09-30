@@ -133,6 +133,9 @@ DENIED_SENSES = {
     ("penetrate", "8923578a40"), # this sense: explicit sexual-anatomical act
     ("screw", "f40552631a"),     # crude slang for sexual intercourse
     ("strip", "a7566c208e"),     # this sense: striptease, erotic entertainment
+    ("ass", "49e31b3efc"),       # crude slang for sexual intercourse
+    ("assault", "dc3f9e3a8e"),   # this sense: to rape
+    ("assault", "86b7121343"),   # this sense: the crime of rape
     # prostitution-related, inappropriate for an exam-prep vocabulary game
     ("madam", "beb6da0c20"),     # this sense: a woman who runs a brothel
     # objectifying/dated stereotype, inappropriate for an exam-prep vocabulary game
