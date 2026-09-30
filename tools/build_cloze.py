@@ -127,6 +127,7 @@ DENIED_SENSES = {
     ("neck", "9e7d9b1f64"),      # this sense: fondle with sexual passion ("necking")
     ("relation", "e7111c9574"), # this sense: the act of sexual procreation
     ("congress", "26e696c163"), # this sense: "the act of sexual procreation between a man and a woman"
+    ("intercourse", "a3c655061b"), # this sense: "the act of sexual procreation between a man and a woman"
     ("scarf", "8ce28672d5"),     # this sense: autoerotic asphyxiation
     ("bush", "72a3839aa1"),      # this sense: pubic hair
     ("crab", "583a599e69"),      # this sense: pubic lice
@@ -147,6 +148,7 @@ DENIED_SENSES = {
     ("skirt", "cebecbe43d"),     # this sense: informal term for a (young) woman
     ("chick", "af33a17905"),     # this sense: informal term for a (young) woman
     ("maid", "91179860d3"),      # this sense: "an unmarried girl (especially a virgin)" ties status to virginity
+    ("maiden", "15c3c68a65"),    # this sense: "an unmarried girl (especially a virgin)" ties status to virginity
     ("peach", "16433fcde2"),     # this sense: "a very attractive or seductive looking woman"
     ("pure", "9409ea5db6"),      # this sense: "in a state of sexual virginity" ties status to virginity
     ("virtue", "a51124f412"),    # this sense: "morality with respect to sexual relations" ties status to chastity
