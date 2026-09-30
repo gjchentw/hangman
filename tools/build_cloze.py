@@ -138,6 +138,7 @@ DENIED_SENSES = {
     ("ass", "49e31b3efc"),       # crude slang for sexual intercourse
     ("assault", "dc3f9e3a8e"),   # this sense: to rape
     ("assault", "86b7121343"),   # this sense: the crime of rape
+    ("grope", "22f5284865"),     # this sense: nonconsensual sexual touching/assault
     # prostitution-related, inappropriate for an exam-prep vocabulary game
     ("madam", "beb6da0c20"),     # this sense: a woman who runs a brothel
     # objectifying/dated stereotype, inappropriate for an exam-prep vocabulary game

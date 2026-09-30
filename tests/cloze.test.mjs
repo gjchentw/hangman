@@ -156,9 +156,15 @@ describe("the word bank", () => {
   after(() => g.close());
 
   test("is matched on base form; a word with no cloze is listed as unavailable", async () => {
-    await g.load("fall,fell,zzzqqq");
+    // "shout" is a real dictionary word (zk tier, long since fully batched)
+    // whose every wordset sense fails usable() - it has permanently zero
+    // cloze entries, unlike "fell" (used here previously) which stopped
+    // working as this test's example the moment cet6 batch 050 gave it its
+    // own three clozes. Any future replacement must have the same property:
+    // check `usable=0` in build_cloze.py's Lexicon before picking one.
+    await g.load("fall,shout,zzzqqq");
     assert.equal(g.$("count-ok").textContent, "1");
-    assert.equal(g.$("missing-list").textContent, "fellzzzqqq");
+    assert.equal(g.$("missing-list").textContent, "shoutzzzqqq");
   });
 
   test("an unavailable word is never drawn", async () => {
