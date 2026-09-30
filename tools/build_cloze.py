@@ -178,6 +178,7 @@ DENIED_SENSES = {
     ("shout", "5ff04b2535"),     # this sense ("use foul or abusive language towards") is a different word's (e.g. "curse"/"revile"), misfiled under "shout"
     ("bonus", "51bfa5bf35"),     # this sense ("anything that tends to arouse") is disconnected from any real meaning of "bonus"; almost certainly misfiled
     ("execution", "d822604427"), # this sense ("unlawful premeditated killing") is murder's definition; execution means lawful/judicial killing, the opposite connotation
+    ("adorn", "e4ed09f6d1"),     # this sense ("to furnish with power or authority") is word-for-word invest's definition (id 3424c84e83), misfiled under "adorn"
     # structurally unclozable: the answer is spelled identically to one of the
     # most common function words in English, so the leak-check (which forbids
     # any other occurrence of the word's own spelling in the sentence) makes a
