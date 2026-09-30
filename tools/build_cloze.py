@@ -144,6 +144,18 @@ DENIED_SENSES = {
     ("assault", "86b7121343"),   # this sense: the crime of rape
     ("outrage", "08a3283020"),   # this sense: "force (someone) to have sex against their will"
     ("grope", "22f5284865"),     # this sense: nonconsensual sexual touching/assault
+    # the headword "rape" is inescapably and predominantly associated with
+    # sexual violence when used to mean violence/despoiling of any kind,
+    # unlike "assault" (above) whose non-sexual-violence senses have
+    # genuinely neutral common usage; every sense describing violence,
+    # warfare, or sexual assault is excluded. The unrelated botanical sense
+    # (rapeseed/canola, id aacd31b812) is kept: different word history, and
+    # unambiguous in a normal sentence, the same way "cock" (rooster) stays
+    # in the pool while only its obscene sense is denied.
+    ("rape", "93d8d7a631"),      # this sense: "destroy and strip of its possession" (pillage)
+    ("rape", "02f8cdb0e3"),      # this sense: "force someone to have sex against their will"
+    ("rape", "6b8a0670de"),      # this sense: the crime of forcing a woman into sexual intercourse
+    ("rape", "e46c4bd1aa"),      # this sense: "the act of despoiling a country in warfare"
     # prostitution-related, inappropriate for an exam-prep vocabulary game
     ("madam", "beb6da0c20"),     # this sense: a woman who runs a brothel
     # objectifying/dated stereotype, inappropriate for an exam-prep vocabulary game
