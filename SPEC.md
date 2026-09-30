@@ -35,6 +35,7 @@ A cloze uses the form its grammar requires, and **that form is the answer**:
   tomorrow), because each round picks one of the word's clozes at random.
 - When the answer differs from the bank word, the result screen shows both:
   `fell ← fall`.
+- Once the round ends, the blank fills in, so the sentence can be read whole.
 
 ### The defining constraint
 
@@ -94,13 +95,13 @@ tools/
   zh_manual.json               451 hand-written translations ECDICT lacks
   zh_dict.json                 generated; COMMITTED so builds need no 63 MB download
   build_inflections.py         ECDICT exchange field → inflections.json
-  inflections.json             allowed surface forms per exam word, by kind — COMMITTED
+  inflections.json             each exam word's tier and inflected forms — COMMITTED
   inflection_supplement.json   hand-kept forms ECDICT lacks (am/are/were …) — COMMITTED
   build_cloze.py               cloze validator + worklist (§7)
   cloze/NNN.json               authored clozes, one file per batch — COMMITTED, append-only
   .wordset-cache/              56 MB source data — ignored
   .ecdict.csv                  63 MB source — ignored
-tests/                         jsdom suites
+tests/                         jsdom suites; tests/fixtures/cloze/ trips every validator rule
 .github/workflows/             deploy + test
 ```
 
@@ -192,7 +193,8 @@ the chosen word is deterministic.
 Invariants worth asserting, because they are how this breaks silently:
 
 - `hangman.html` shows every EN definition and no cloze UI
-- `hangman_cloze.html` has no language toggle and no Chinese text
+- `hangman_cloze.html` has no language toggle and no Chinese gloss (its UI labels
+  are Chinese, like the other game's)
 - the answer area, the rendered blank and the answer all have the same length
 - the rendered hint never contains any form of the answer's word
 - the result screen shows `answer ← base` exactly when they differ
@@ -248,13 +250,15 @@ Invariants worth asserting, because they are how this breaks silently:
 
 Exam-tagged words (ECDICT `zk` 中考, `gk` 高考, `cet4`, `cet6`, `ky` 研究所,
 `toefl`, `ielts`, `gre`), **up to 3 usable senses per word**:
-**12,822 words / 25,293 clozes**.
+**12,625 words / 24,575 clozes**, as `build_cloze.py` measures it.
 
 A sense is usable when it is a noun, verb, adjective or adverb; carries no wordset
 `labels` (archaic, slang, technical); has a definition of at least 25 characters
 that describes meaning rather than grammar (not "used to form the comparative");
-and whose definition contains no form of the word. Up to 3 are taken per word,
-preferring senses that have a wordset example sentence, then list order.
+and whose definition gives the word away neither by a form of it nor, for words
+of 5+ letters, by a word built on it — "a marketplace where groceries are sold"
+cannot hint at `market`. Up to 3 are taken per word, preferring senses that
+have a wordset example sentence, then list order.
 
 Work proceeds in tier order — `zk`, `gk`, `cet4`, `cet6`, `ky`, `toefl`,
 `ielts`, `gre` — which is already pedagogically ordered. Raw frequency order is
@@ -268,6 +272,11 @@ avoided: its head is function words.
   across many sessions.
 - Each batch is one committed file `tools/cloze/NNN.json`, append-only. The game
   ships at any coverage level; coverage grows batch by batch.
+- **Every batch gets a meaning read**: each sentence printed with its answer
+  filled in, beside the definition it was written for. The validator checks
+  form, never meaning — the pilot passed it with 7 of 299 saying the wrong
+  thing, such as a sentence written for "inactivity" under the sense "the state
+  of being active".
 
 ```json
 [
@@ -293,8 +302,8 @@ avoided: its head is function words.
 Mechanically checked for every entry:
 
 - `id` resolves to a sense of `w`
-- exactly one `{{blank}}`, **not immediately followed by a letter or
-  apostrophe** — this is what catches `{{blank}}s`
+- exactly one `{{blank}}`, with **no letter or apostrophe touching it** on either
+  side — this is what catches `{{blank}}s`
 - at most 3 sentences and 320 characters
 - `a` is an allowed form for that sense's part of speech:
 
@@ -308,11 +317,15 @@ Mechanically checked for every entry:
   Forms come from `inflections.json` (ECDICT's `exchange` field — authoritative
   for irregulars like `fell/fallen`, `went/gone`, `children`, `better/best`, and
   for spelling changes like `stopped`, `running`). `inflection_supplement.json`
-  fills the gaps ECDICT leaves, such as `be → am/are/were`. The 3,636 exam words
-  ECDICT lists no forms for fall back to regular rules.
+  fills the gaps ECDICT leaves, such as `be → am/are/were`. The 3,767 exam words
+  ECDICT lists no forms for fall back to regular rules — permissively, so an
+  uncountable noun like `information` would accept `informations`; the leak and
+  blank checks are unaffected.
 - no form of `w`, of any part of speech, appears in the sentence outside the
-  blank, or in the definition shown beside it (case-insensitive)
-- no duplicate `(w, id)`
+  blank, or in the definition shown beside it (case-insensitive); for words of
+  5+ letters, neither does a word built on it (`quick` → `quickly`) — shorter
+  stems would match unrelated words (`car` → `career`)
+- no duplicate `(w, id)`, and at most 3 clozes per word
 
 `build_cloze.py` exits non-zero on any reject and names the reason, so rejects
 are rewritten in the same session. `build_dict.py` also excludes any invalid
@@ -329,6 +342,10 @@ The pilot predates the inflection rule. Every entry is converted and re-reviewed
 - every sentence is re-read for the form its grammar demands — `expect[1]` →
   `expecting`, `build[3]` → `built`, `fall[3]`/`fall[11]` → `fell`,
   `receive[2]` → `received`, `sense[1]` → `senses`
+
+Done as batch `001`: **299 clozes for 150 words**. Sixteen pilot senses were
+dropped because their definition gives the word away; fifteen were replaced by
+another sense of the same word, and `police` has no other usable sense.
 
 ### Size
 

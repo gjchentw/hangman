@@ -50,13 +50,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      # hangman.html is fully self-contained, so the whole site is one file
-      # served as the index.
+      # Each game is one self-contained file; the definitions game doubles as
+      # the index.
       - name: Assemble site
         run: |
           mkdir -p _site
           cp hangman.html _site/index.html
           cp hangman.html _site/hangman.html
+          cp hangman_cloze.html _site/hangman_cloze.html
 
       # enablement: true turns Pages on for the repo if it is not already,
       # so no manual Settings step is needed for a fresh repo.
