@@ -43,6 +43,12 @@ MIN_DEF_CHARS = 25
 # Below this length a stem matches unrelated words (car -> career), so only
 # longer words are also checked for derivations (quick -> quickly).
 STEM_MIN = 5
+# Warnings, not rejects: a fragment copied from a dictionary example ("Winnow
+# chaff.") and the same sentence reused for a synonym with a word or two
+# swapped both pass every rule, and both crept in by the hundred before these
+# checks existed.
+MIN_WORDS = 5
+SHARED_MAX_EDITS = 2
 
 # The inflections each part of speech may take. A derivation is a different
 # word: quick -> quickly is never an answer for "quick".
@@ -211,6 +217,10 @@ DENIED_SENSES = {
     ("lucre", "c5d5c68314"), # this sense ("the excess of revenues over outlays...") is profit's definition, byte-identical to profit/d672def476, misfiled under "lucre"; lucre's other sense ("informal terms for money") is kept
     ("pagan", "41e2026ea7"), # this sense ("someone motivated by desires for sensual pleasures") is hedonist's definition, byte-identical to hedonist/912d7aee48, misfiled under "pagan"; pagan's other three senses are kept
     ("variegation", "c9b54be247"), # this sense ("the act of introducing variety, especially in investments...") is diversification's definition, nearly byte-identical to diversification/1389853011, misfiled under "variegation"; variegation's other sense ("variability in coloration") is kept
+    # usage notes, not meanings: the "definition" describes how the word is
+    # misused or labelled, so a cloze for it would teach the misuse
+    ("credible", "821cb1878a"),  # "a common but incorrect usage for 'credulous'"
+    ("deviate", "efa725801d"),   # "an archaic term for a person whose behavior is non-standard, especially in sexual behavior" -- archaic and stigmatizing, though wordset leaves it unlabelled
     # structurally unclozable: the answer is spelled identically to one of the
     # most common function words in English, so the leak-check (which forbids
     # any other occurrence of the word's own spelling in the sentence) makes a
@@ -345,7 +355,7 @@ def check(lex: Lexicon, entry: dict):
     if not sense:
         return "unknown_sense", f"{sid!r} is not a sense of {w!r}"
     if (w, sid) in DENIED_SENSES:
-        return "denied_sense", f"{sid!r} of {w!r} is a slur/obscenity, excluded regardless of who authored it"
+        return "denied_sense", f"{sid!r} of {w!r} is in DENIED_SENSES (its comment says why), excluded regardless of who authored it"
     if sense["pos"] not in KINDS_FOR:
         return "pos", f"part of speech {sense['pos']!r} has no cloze form"
 
@@ -391,6 +401,62 @@ def validate(lex: Lexicon, batches: list):
         per_word[key[0]] = per_word.get(key[0], 0) + 1
         valid.append(entry)
     return valid, rejects
+
+
+def _words(text: str) -> list:
+    return re.findall(r"[a-z0-9']+|_", text.lower().replace(BLANK, " _ "))
+
+
+def _edits(a: list, b: list, cap: int) -> int:
+    """Word-level edit distance between two sentences, or cap + 1 once it must exceed cap."""
+    if abs(len(a) - len(b)) > cap:
+        return cap + 1
+    prev = list(range(len(b) + 1))
+    for i, x in enumerate(a, 1):
+        cur = [i]
+        for j, y in enumerate(b, 1):
+            cur.append(min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + (x != y)))
+        if min(cur) > cap:
+            return cap + 1
+        prev = cur
+    return prev[-1]
+
+
+def warn(batches: list, rejects: list) -> list:
+    """Valid entries that read badly: too short to be a sentence, or another cloze's sentence again."""
+    rejected = {(r["file"], r["index"]) for r in rejects}
+    entries = [(f, i, e) for f, i, e in batches if (f, i) not in rejected]
+    out = []
+
+    def add(f, i, e, code, detail):
+        out.append({"file": f, "index": i, "w": e["w"], "id": e["id"], "code": code, "detail": detail})
+
+    for f, i, e in entries:
+        n = len(_words(e["c"]))
+        if n < MIN_WORDS:
+            add(f, i, e, "short", f"{n} words; write a full sentence")
+
+    # Compare only sentences that share one of their rarer words; comparing
+    # every pair of ~25k sentences would take minutes.
+    words = [_words(e["c"]) for _, _, e in entries]
+    df = {}
+    for ws in words:
+        for t in set(ws):
+            df[t] = df.get(t, 0) + 1
+    buckets = {}
+    for n, ws in enumerate(words):
+        for t in sorted(set(ws) - {"_"}, key=lambda t: (df[t], t))[:4]:
+            buckets.setdefault(t, []).append(n)
+    flagged = set()
+    for ns in buckets.values():
+        for x, a in enumerate(ns):
+            for b in ns[x + 1:]:
+                if b in flagged or _edits(words[a], words[b], SHARED_MAX_EDITS) > SHARED_MAX_EDITS:
+                    continue
+                flagged.add(b)
+                fa, ia, ea = entries[a]
+                add(*entries[b], "shared_sentence", f"within {SHARED_MAX_EDITS} words of {fa}#{ia} ({ea['w']})")
+    return sorted(out, key=lambda r: (r["file"], r["index"]))
 
 
 def payload(lex: Lexicon, valid: list) -> dict:
@@ -445,12 +511,22 @@ def main() -> int:
         return 0
 
     valid, rejects = validate(lex, batches)
+    warnings = warn(batches, rejects)
+    # A valid cloze can be for a sense outside the target list (the pilot's
+    # were chosen before the list existed), so coverage counts only clozes
+    # for target senses; the rest still ship and are reported separately.
+    targets = {(w, s["id"]) for w in lex.senses for s in lex.targets(w)}
+    rejected = {(r["file"], r["index"]) for r in rejects}
+    off_target = [{"file": f, "index": i, "w": e["w"], "id": e["id"]} for f, i, e in batches
+                  if (f, i) not in rejected and (e["w"], e["id"]) not in targets]
+    on_target = len(valid) - len(off_target)
     if args.json:
-        print(json.dumps({"entries": len(batches), "valid": len(valid), "rejects": rejects}, ensure_ascii=False))
+        print(json.dumps({"entries": len(batches), "valid": len(valid), "rejects": rejects,
+                          "warnings": warnings, "targets": len(targets), "on_target": on_target,
+                          "off_target": off_target}, ensure_ascii=False))
         return 1 if rejects else 0
 
-    targets = {w: len(lex.targets(w)) for w in lex.senses}
-    playable = sum(1 for n in targets.values() if n)
+    playable = len({w for w, _ in targets})
     words_done = len({e["w"] for e in valid})
     print(f"batches   : {len({f for f, _, _ in batches})}  ({args.dir})")
     print(f"entries   : {len(batches):,}")
@@ -458,8 +534,13 @@ def main() -> int:
     print(f"rejected  : {len(rejects):,}")
     for r in rejects:
         print(f"    {r['file']}#{r['index']} {r['w']}[{r['id']}] {r['code']}: {r['detail']}")
+    print(f"warnings  : {len(warnings):,}")
+    for r in warnings:
+        print(f"    {r['file']}#{r['index']} {r['w']}[{r['id']}] {r['code']}: {r['detail']}")
     print(f"coverage  : {words_done:,} / {playable:,} playable words,"
-          f" {len(valid):,} / {sum(targets.values()):,} target clozes")
+          f" {on_target:,} / {len(targets):,} target senses")
+    if off_target:
+        print(f"off-target: {len(off_target):,} valid clozes for senses outside the target list (still shipped)")
     return 1 if rejects else 0
 
 

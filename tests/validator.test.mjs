@@ -43,6 +43,29 @@ describe("clozes that break a rule", () => {
   });
 });
 
+describe("clozes that pass every rule but read badly", () => {
+  const fixtures = JSON.parse(readFileSync(`${FIXTURES}/warn/001.json`, "utf8"));
+  const r = validate(`${FIXTURES}/warn`);
+  const byIndex = new Map(r.warnings.map((x) => [x.index, x.code]));
+
+  test("are warned about without failing the run", () => {
+    assert.equal(r.code, 0);
+    assert.deepEqual(r.rejects, []);
+  });
+
+  fixtures.forEach((entry, index) => {
+    const want = entry._expect;
+    test(`#${index} ${entry.w}: ${want ?? "no warning"}`, () => {
+      assert.equal(byIndex.get(index) ?? null, want);
+    });
+  });
+
+  test("a cloze for a sense outside the target list is counted apart from coverage", () => {
+    assert.ok(r.off_target.some((x) => x.w === "official" && x.id === "2232619192"));
+    assert.equal(r.on_target + r.off_target.length, r.valid);
+  });
+});
+
 describe("the offensive-sense denylist", () => {
   test("an authored entry pointing at a denied sense is rejected, not just hidden from --todo", () => {
     const r = validate(`${FIXTURES}/bad`);

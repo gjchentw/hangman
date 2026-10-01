@@ -105,11 +105,11 @@
 {"w": "turnpike", "id": "e932cab542", "a": "turnpike", "c": "They took the {{blank}} to avoid the slower back roads."},
 {"w": "turnpike", "id": "17fc999fdf", "a": "turnpike", "c": "Travelers once had to stop at every {{blank}} along the old coach road."},
 {"w": "turquoise", "id": "0f15e56708", "a": "turquoise", "c": "The bracelet was set with several pieces of polished {{blank}}."},
-{"w": "turquoise", "id": "186d10bd09", "a": "turquoise", "c": "She painted the bedroom walls a soft {{blank}}."},
+{"w": "turquoise", "id": "186d10bd09", "a": "turquoise", "c": "The water in the bay was a brilliant {{blank}}."},
 {"w": "tutorial", "id": "098be793ed", "a": "tutorial", "c": "She scheduled a weekly {{blank}} to catch up on calculus."},
 {"w": "twig", "id": "791a75f992", "a": "twig", "c": "Stepping on a dry {{blank}} announced her presence to every animal nearby."},
-{"w": "twig", "id": "e37ce3a807", "a": "twigged", "c": "The lightning bolt seemed to {{blank}} in several directions at once."},
-{"w": "twig", "id": "327f8a22ab", "a": "twig", "c": "It took him a moment to {{blank}} what she actually meant."},
+{"w": "twig", "id": "e37ce3a807", "a": "twig", "c": "The lightning bolt seemed to {{blank}} in several directions at once."},
+{"w": "twig", "id": "327f8a22ab", "a": "twigged", "c": "He finally {{blank}} that the surprise party was for him."},
 {"w": "twine", "id": "eb7a372f13", "a": "twine", "c": "She would {{blank}} the two colored ribbons together for the wreath."},
 {"w": "twine", "id": "89132d7c8b", "a": "twine", "c": "Sailors learned to {{blank}} a sturdy rope from hemp fibers."},
 {"w": "twine", "id": "8ea72e4add", "a": "twine", "c": "Ivy had begun to {{blank}} itself around the old fence post."},
@@ -190,7 +190,7 @@
 {"w": "upheaval", "id": "24c05e2bfd", "a": "upheaval", "c": "The county-wide {{blank}} contributed to months of government instability."},
 {"w": "upheaval", "id": "f58e9677d3", "a": "upheaval", "c": "Student {{blank}} shut down the campus for a week."},
 {"w": "upheaval", "id": "7fdb13aa59", "a": "upheaval", "c": "Geologists traced the mountain range to an ancient tectonic {{blank}}."},
-{"w": "upland", "id": "775573da86", "a": "upland", "c": "Sheep grazed freely across the windswept {{blank}}."},
+{"w": "upland", "id": "775573da86", "a": "upland", "c": "The village sits on a high {{blank}} where the summers are cool."},
 {"w": "uprising", "id": "870d8b6463", "a": "uprising", "c": "The garrison was sent to put down the sudden {{blank}}."},
 {"w": "uproot", "id": "64b154e155", "a": "uproot", "c": "Gardeners had to {{blank}} the vine that had spread all over the fence."},
 {"w": "uproot", "id": "a08ce79020", "a": "uproot", "c": "The new regime moved quickly to {{blank}} every remaining vestige of the old democracy."},
@@ -248,5 +248,5 @@
 {"w": "venomous", "id": "a140e0a1d9", "a": "venomous", "c": "Rangers warned hikers that the local snake was highly {{blank}}."},
 {"w": "ventilation", "id": "5df45b9940", "a": "ventilation", "c": "Workers were continually adjusting the warehouse's {{blank}}."},
 {"w": "ventilation", "id": "b946b41036", "a": "ventilation", "c": "Proper {{blank}} of the mine shaft was essential for the miners' safety."},
-{"w": "ventilation", "id": "25cc2df298", "a": "ventilation", "c": "The anesthesiologist monitored the patient's {{blank}} throughout the procedure."}
+{"w": "ventilation", "id": "25cc2df298", "a": "ventilation", "c": "The machine takes over {{blank}} when a patient can't breathe alone."}
 ]

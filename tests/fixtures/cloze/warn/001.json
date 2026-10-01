@@ -1,0 +1,10 @@
+[
+ {"_expect": "short", "w": "plan", "id": "cec980059a", "a": "plan",
+  "c": "We need a {{blank}}."},
+ {"_expect": null, "w": "fall", "id": "8d87914da3", "a": "fell",
+  "c": "She {{blank}} back into the armchair, completely worn out."},
+ {"_expect": "shared_sentence", "w": "fall", "id": "3d8ca962a0", "a": "fell",
+  "c": "She {{blank}} back into the old armchair, totally worn out."},
+ {"_expect": null, "w": "official", "id": "2232619192", "a": "official",
+  "c": "As a senator he gets certain {{blank}} privileges, like a reserved parking spot."}
+]
