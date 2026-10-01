@@ -128,6 +128,7 @@ DENIED_SENSES = {
     ("upper", "3eebf95724"),     # slang for a CNS stimulant drug (amphetamines)
     ("crank", "b35ef109d2"),     # slang for methamphetamine
     ("weed", "ce5445de32"),      # street name for marijuana
+    ("skunk", "758269aac1"),     # street name for marijuana (this sense)
     ("joint", "e1b868e3b3"),     # slang for a marijuana cigarette
     ("nickel", "6816de714c"),    # slang for a $5 bag of drugs
     ("dime", "d401f526e2"),      # street name for a $10 bag of drugs
@@ -155,6 +156,7 @@ DENIED_SENSES = {
     ("stimulation", "32d085e8e1"), # this sense: "mutual sexual fondling prior to sexual intercourse"
     ("strip", "a7566c208e"),     # this sense: striptease, erotic entertainment
     ("ass", "49e31b3efc"),       # crude slang for sexual intercourse
+    ("sod", "a76968cad0"),       # crude slang: "someone who engages in anal copulation"
     ("assault", "dc3f9e3a8e"),   # this sense: to rape
     ("assault", "86b7121343"),   # this sense: the crime of rape
     ("outrage", "08a3283020"),   # this sense: "force (someone) to have sex against their will"
