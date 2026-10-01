@@ -181,6 +181,7 @@ DENIED_SENSES = {
     ("maid", "91179860d3"),      # this sense: "an unmarried girl (especially a virgin)" ties status to virginity
     ("maiden", "15c3c68a65"),    # this sense: "an unmarried girl (especially a virgin)" ties status to virginity
     ("peach", "16433fcde2"),     # this sense: "a very attractive or seductive looking woman"
+    ("flirt", "47d1f4e300"),     # this sense: "a seductive woman who uses her sex appeal to exploit men"
     ("pure", "9409ea5db6"),      # this sense: "in a state of sexual virginity" ties status to virginity
     ("virtue", "a51124f412"),    # this sense: "morality with respect to sexual relations" ties status to chastity
     ("purity", "f7c0cf67c6"),    # this sense: "a woman's virtue or chastity" ties status to chastity
