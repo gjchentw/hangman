@@ -88,6 +88,7 @@ DENIED_SENSES = {
     ("rabble", "5105245aba"),    # disparaging term for common people
     ("riffraff", "4eba077c2f"),  # disparaging term for common people
     ("shrimp", "ca64ffee89"),    # disparaging term for small people (this sense)
+    ("midget", "65f997a7dc"),    # ableist slur when applied to people of short stature (this sense: "a person who is markedly small"); midget's unrelated adjective sense ("very small", e.g. midget submarine) is kept
     ("softness", "f5a4ae3c81"),  # homophobic/gendered insult sense
     ("frog", "540a21054d"),      # ethnic slur for a French person (this sense)
     ("crossbreeding", "a7af12a8bf"), # this sense applies animal-breeding language to interracial human reproduction ("especially by white and non-white persons"); dehumanizing racial framing
@@ -202,6 +203,7 @@ DENIED_SENSES = {
     ("execution", "d822604427"), # this sense ("unlawful premeditated killing") is murder's definition; execution means lawful/judicial killing, the opposite connotation
     ("adorn", "e4ed09f6d1"),     # this sense ("to furnish with power or authority") is word-for-word invest's definition (id 3424c84e83), misfiled under "adorn"
     ("chromatic", "e91f6672e7"), # this sense ("able to refract light without spectral color separation", ex "chromatic lens") is achromatic's definition, misfiled under "chromatic"
+    ("lucre", "c5d5c68314"), # this sense ("the excess of revenues over outlays...") is profit's definition, byte-identical to profit/d672def476, misfiled under "lucre"; lucre's other sense ("informal terms for money") is kept
     # structurally unclozable: the answer is spelled identically to one of the
     # most common function words in English, so the leak-check (which forbids
     # any other occurrence of the word's own spelling in the sentence) makes a
