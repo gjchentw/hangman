@@ -84,6 +84,7 @@ DENIED_SENSES = {
     ("fairy", "57f596ca2f"),     # anti-gay slur (this sense)
     ("queen", "a0f666279b"),     # anti-gay slur (this sense)
     ("hillbilly", "451c0f0b20"), # disparaging regional/class term
+    ("welsh", "9752771cb3"),     # "cheat by avoiding payment of a gambling debt" -- a disparaging ethnic stereotype about Welsh people; this word's only sense, so it drops out of the pool entirely
     ("mongrel", "35cb5be8f2"),   # derogatory-term sense (this sense)
     ("rabble", "5105245aba"),    # disparaging term for common people
     ("riffraff", "4eba077c2f"),  # disparaging term for common people
