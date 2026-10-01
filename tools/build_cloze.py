@@ -157,6 +157,7 @@ DENIED_SENSES = {
     ("outrage", "08a3283020"),   # this sense: "force (someone) to have sex against their will"
     ("grope", "22f5284865"),     # this sense: nonconsensual sexual touching/assault
     ("ravish", "fc875028dd"),    # this sense: "force (someone) to have sex against their will"; ravish's other sense ("hold spellbound") is unrelated and kept
+    ("molest", "a76f70648b"),    # this sense: "harass or assault sexually"; molest's other sense ("annoy continually or chronically") is unrelated and kept
     ("bondage", "286601d473"),   # this sense: explicit BDSM sexual practice
     # the headword "rape" is inescapably and predominantly associated with
     # sexual violence when used to mean violence/despoiling of any kind,
@@ -173,6 +174,7 @@ DENIED_SENSES = {
     # prostitution-related, inappropriate for an exam-prep vocabulary game
     ("madam", "beb6da0c20"),     # this sense: a woman who runs a brothel
     ("solicit", "9570e7f48d"),   # this sense: "approach with an offer of sexual favors" (ex: solicited by a prostitute)
+    ("procure", "d3b3f4dff4"),   # this sense: "arrange for sexual partners for others" (pandering); procure's other sense ("get by special effort") falls below the tool's existing MIN_DEF_CHARS filter, so this denial removes "procure" from the pool entirely -- expected, pre-existing filter behavior
     # objectifying/dated stereotype, inappropriate for an exam-prep vocabulary game
     ("lovely", "3d3b3b8df7"),    # this sense: "a very pretty girl who works as a photographer's model"
     ("sister", "b146bf5ae9"),    # this sense: slang term of address for attractive young women
