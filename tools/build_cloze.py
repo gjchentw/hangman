@@ -96,6 +96,8 @@ DENIED_SENSES = {
     ("idiocy", "b42d2da0bb"),    # outdated clinical/ableist term (this sense: "extreme mental retardation")
     ("idiotic", "c3519c5de6"),   # outdated clinical/ableist term (this sense: "having a mental age of three to seven years")
     ("moron", "086b22943f"),     # outdated clinical/eugenics-era term (this sense: "a person of subnormal intelligence"); this word's only sense
+    ("imbecile", "b6a52dff54"),  # outdated clinical/eugenics-era term (this sense: "having a mental age of three to seven years")
+    ("imbecile", "c1737e85e8"),  # outdated clinical/eugenics-era term (this sense: "a person of subnormal intelligence"); imbecile's only other sense, removing this word from the pool entirely
     # obscenities
     ("cock", "dbe472b674"),      # obscene term for penis
     ("prick", "b42157a643"),     # obscene term for penis
