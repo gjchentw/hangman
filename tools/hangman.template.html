@@ -271,6 +271,8 @@
   .result .word { color: var(--text); font-weight: 700; letter-spacing: .06em; }
 
   .scoreline { color: var(--muted); font-size: .8125rem; text-align: center; }
+  .credits { color: var(--muted); font-size: .75rem; line-height: 1.7; text-align: center; margin-top: 28px; }
+  .credits a { color: inherit; }
 
   @media (max-width: 620px) {
     .board { flex-direction: column; align-items: center; gap: 12px; }
@@ -400,6 +402,14 @@
       <p class="scoreline" id="scoreline" style="margin-top:16px"></p>
     </div>
   </section>
+
+  <!-- wordset's CC BY-SA licence asks for attribution wherever its content is
+       shown, and the published site is only these HTML files - not README. -->
+  <footer class="credits" id="credits">
+    資料來源：<a href="https://github.com/wordset/wordset-dictionary" target="_blank" rel="noopener noreferrer">wordset-dictionary</a>（英文釋義<span class="only-cloze">與部分例句</span>，CC BY-SA 3.0）·
+    <a href="https://github.com/skywind3000/ECDICT" target="_blank" rel="noopener noreferrer">ECDICT</a>（<span class="only-plain">中文釋義</span><span class="only-cloze">考試分級與詞形變化</span>，MIT）<span class="only-plain"> ·
+    <a href="https://github.com/BYVoid/OpenCC" target="_blank" rel="noopener noreferrer">OpenCC</a>（簡轉繁，Apache-2.0）</span>
+  </footer>
 </main>
 
 <script>
@@ -635,7 +645,10 @@
       const options = state.cloze[state.word];
       const [answer, sentence, definition, pos] = options[Math.floor(Math.random() * options.length)];
       state.answer = answer;
-      state.hint = { sentence, definition, pos };
+      // A blank that opens a sentence fills in capitalized ("Pigeons gathered
+      // ..."); the answer the player spells stays lowercase.
+      const capital = /(^|[.!?]["')’”]*\s+)$/.test(sentence.split("{{blank}}")[0]);
+      state.hint = { sentence, definition, pos, capital };
     } else {
       state.answer = state.word;
       state.defs = state.dict[state.word] || [];
@@ -689,8 +702,9 @@
     // Once the round is over the sentence reads whole, so it can be learned as written.
     const over = state.phase !== "playing";
     blank.classList.toggle("filled", over);
+    const filled = state.hint.capital ? state.answer[0].toUpperCase() + state.answer.slice(1) : state.answer;
     blank.textContent = over
-      ? state.answer
+      ? filled
       : [...state.answer].map((ch) => (isLetter(ch) ? "_" : ch)).join("");
   }
 

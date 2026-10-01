@@ -65,7 +65,7 @@ engine instead of audio files.
 | `.venv/bin/python tools/build_zh.py` | Regenerate Chinese data. Needs network + `opencc`. |
 | `python3 tools/build_inflections.py` | Regenerate `inflections.json` from ECDICT. Needs network. Rarely. |
 | `python3 tools/build_cloze.py --todo 250` | Print the next 250 senses still needing a cloze, in tier order. |
-| `python3 tools/build_cloze.py` | Validate every authored cloze. Exits non-zero on any reject. No network, no key. |
+| `python3 tools/build_cloze.py` | Validate every authored cloze and print warnings. Exits non-zero on any reject (warnings never fail it). No network, no key. |
 | `npm test` | Run the jsdom suites. |
 | `open hangman.html` / `open hangman_cloze.html` | Manual check — required for audio and layout. |
 
@@ -84,7 +84,7 @@ which publishes `index.html` (= `hangman.html`), `hangman.html` and
 
 ```
 hangman.html                   釋義版 build artifact, ~4.8 MB — COMMITTED
-hangman_cloze.html             克漏字版 build artifact, ~2 MB at full scope — COMMITTED
+hangman_cloze.html             克漏字版 build artifact, ~1.6 MB at full scope — COMMITTED
 SPEC.md                        this file
 README.md                      player-facing docs for both games
 tools/
@@ -98,10 +98,10 @@ tools/
   inflections.json             each exam word's tier and inflected forms — COMMITTED
   inflection_supplement.json   hand-kept forms ECDICT lacks (am/are/were …) — COMMITTED
   build_cloze.py               cloze validator + worklist (§7)
-  cloze/NNN.json               authored clozes, one file per batch — COMMITTED, append-only
+  cloze/NNN.json               authored clozes, one file per batch — COMMITTED, append-only (§7)
   .wordset-cache/              56 MB source data — ignored
   .ecdict.csv                  63 MB source — ignored
-tests/                         jsdom suites; tests/fixtures/cloze/ trips every validator rule
+tests/                         jsdom suites; tests/fixtures/cloze/ trips every validator rule and warning
 .github/workflows/             deploy + test
 ```
 
@@ -198,9 +198,12 @@ Invariants worth asserting, because they are how this breaks silently:
 - the answer area, the rendered blank and the answer all have the same length
 - the rendered hint never contains any form of the answer's word
 - the result screen shows `answer ← base` exactly when they differ
+- a blank that opens a sentence fills in capitalized (`Pigeons gathered…`), while
+  the answer area and result screen keep the lowercase answer
 - TTS in the cloze game speaks the answer, not the bank word
 - a bank word with no cloze is listed as unavailable and never drawn
 - the cloze game does not resume the plain game's word bank, and vice versa
+- both games show the data-sources footer with each source's licence
 
 ## 6. Boundaries
 
@@ -215,6 +218,9 @@ Invariants worth asserting, because they are how this breaks silently:
 - Keep both games working offline from `file://`.
 - Wrap every `localStorage` access in `try/catch`.
 - Run `npm test` before pushing.
+- Keep the data-sources footer in both games. wordset's CC BY-SA licence asks
+  for attribution wherever its content is shown, and the published site is
+  only the HTML files — README never reaches a player.
 
 ### Ask first
 
@@ -250,7 +256,8 @@ Invariants worth asserting, because they are how this breaks silently:
 
 Exam-tagged words (ECDICT `zk` 中考, `gk` 高考, `cet4`, `cet6`, `ky` 研究所,
 `toefl`, `ielts`, `gre`), **up to 3 usable senses per word**:
-**12,625 words / 24,575 clozes**, as `build_cloze.py` measures it.
+**12,608 words / 24,501 target senses**, as `build_cloze.py` measures it
+(all written as of batch `100`).
 
 A sense is usable when it is a noun, verb, adjective or adverb; carries no wordset
 `labels` (archaic, slang, technical); has a definition of at least 25 characters
@@ -259,6 +266,17 @@ and whose definition gives the word away neither by a form of it nor, for words
 of 5+ letters, by a word built on it — "a marketplace where groceries are sold"
 cannot hint at `market`. Up to 3 are taken per word, preferring senses that
 have a wordset example sentence, then list order.
+
+Some senses pass all of that and still must never be clozed, so
+`DENIED_SENSES` in `build_cloze.py` names them by `(word, id)`, each with a
+comment saying why. The categories: slurs and outdated clinical insults;
+obscenities; drug slang; sexually explicit or sexual-violence senses;
+prostitution; objectifying or virginity/chastity-defined senses; distressing
+medical senses; definitions misfiled from another headword (`lucre` carrying
+`profit`'s definition word for word); and usage notes that are not meanings
+(`credible`: "a common but incorrect usage for 'credulous'"). Only the named
+sense is excluded; the word's other senses stay in scope. A denied sense
+drops out of `--todo`, and an authored entry pointing at one is rejected.
 
 Work proceeds in tier order — `zk`, `gk`, `cet4`, `cet6`, `ky`, `toefl`,
 `ielts`, `gre` — which is already pedagogically ordered. Raw frequency order is
@@ -270,13 +288,23 @@ avoided: its head is function words.
 - About **250 per batch** — the ceiling at which the pilot's sentences stayed
   varied rather than formulaic. At the full scope that is ~100 batches, spread
   across many sessions.
-- Each batch is one committed file `tools/cloze/NNN.json`, append-only. The game
-  ships at any coverage level; coverage grows batch by batch.
+- Each batch is one committed file `tools/cloze/NNN.json`. The game ships at any
+  coverage level; coverage grows batch by batch.
+- **Append-only means files, not lines.** A batch file is never deleted,
+  renumbered or reordered, so `NNN.json#index` keeps pointing at the same
+  entry. An entry *is* fixed in place when it turns out wrong — its sentence,
+  its answer, or, when its sense is denied, its sense — and the commit says
+  why. A correction must not go in a new batch: the validator keeps the first
+  entry for a `(w, id)` and rejects the later one as a duplicate.
 - **Every batch gets a meaning read**: each sentence printed with its answer
   filled in, beside the definition it was written for. The validator checks
   form, never meaning — the pilot passed it with 7 of 299 saying the wrong
   thing, such as a sentence written for "inactivity" under the sense "the state
   of being active".
+- The validator accepts **any** allowed form of the word, so the meaning read
+  also checks that `a` is the form *this* sentence needs: after "to" or a
+  modal it is the base form ("trying to {{blank}}" is `speed`, not `sped`),
+  after "was" a participle, after "six" a plural.
 
 ```json
 [
@@ -327,6 +355,21 @@ Mechanically checked for every entry:
   stems would match unrelated words (`car` → `career`)
 - no duplicate `(w, id)`, and at most 3 clozes per word
 
+It also **warns**, without failing the run, about entries that pass every rule
+but read badly — both crept in by the hundred before the checks existed:
+
+- `short`: fewer than 5 words, usually a fragment copied from a dictionary
+  example ("Winnow chaff.")
+- `shared_sentence`: within 2 words of another cloze's sentence, usually a
+  synonym given the same frame ("His {{blank}} decision to resign shocked the
+  entire office" for both `impulsive` and `precipitant`)
+
+Warnings are fixed like rejects; the count is meant to stay at zero.
+
+Coverage counts only clozes for target senses. A valid cloze for a sense
+outside the target list (two pilot entries) still ships, and is reported on
+its own line.
+
 `build_cloze.py` exits non-zero on any reject and names the reason, so rejects
 are rewritten in the same session. `build_dict.py` also excludes any invalid
 entry from the payload, so a reject that slipped through still cannot reach a
@@ -350,7 +393,7 @@ another sense of the same word, and `police` has no other usable sense.
 ### Size
 
 `hangman.html` returns to ~4.8 MB — it no longer carries clozes.
-`hangman_cloze.html` is ~2 MB at full scope, since it carries only clozes and
+`hangman_cloze.html` is ~1.6 MB at full scope, since it carries only clozes and
 their definitions.
 
 ## Data sources

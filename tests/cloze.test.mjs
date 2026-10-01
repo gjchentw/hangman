@@ -78,6 +78,23 @@ describe("a round from a word with more than one possible answer", () => {
   });
 });
 
+describe("a cloze that opens with the blank", () => {
+  // pigeon's only cloze is "{{blank}} gathered in the square ..." -> "pigeons".
+  let g;
+  before(async () => { g = boot({ file: FILE }); await g.play("pigeon"); });
+  after(() => g.close());
+
+  test("fills in capitalized once the round is over", () => {
+    g.type("pigeons");
+    assert.equal(blank(g).textContent, "Pigeons");
+  });
+
+  test("while the answer the player spelled stays lowercase", () => {
+    assert.equal(g.answer(), "pigeons");
+    assert.equal(g.$("result-word").textContent, "pigeons ← pigeon");
+  });
+});
+
 describe("a round whose answer is the bank word itself", () => {
   let g;
   before(async () => { g = boot({ file: FILE }); await g.play("plan"); });

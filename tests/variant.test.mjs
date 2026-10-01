@@ -50,6 +50,34 @@ describe("the cloze game", () => {
   });
 });
 
+describe("both games credit their data", () => {
+  for (const file of [PLAIN, CLOZE]) {
+    test(`${file} names wordset and ECDICT with their licences`, () => {
+      const g = boot({ file });
+      try {
+        const credits = g.$("credits");
+        assert.match(credits.textContent, /wordset-dictionary[\s\S]*CC BY-SA 3\.0/);
+        assert.match(credits.textContent, /ECDICT[\s\S]*MIT/);
+        for (const a of credits.querySelectorAll("a")) {
+          assert.equal(a.target, "_blank", `${a.textContent} opens beside the game, not over it`);
+          assert.match(a.rel, /noopener/);
+        }
+      } finally {
+        g.close();
+      }
+    });
+  }
+
+  test("the cloze game says some of its sentences come from wordset", () => {
+    const g = boot({ file: CLOZE });
+    try {
+      assert.match(g.$("credits").querySelector(".only-cloze").textContent, /例句/);
+    } finally {
+      g.close();
+    }
+  });
+});
+
 describe("the two games keep separate state", () => {
   test("the cloze game saves under its own prefix", async () => {
     const g = boot({ file: CLOZE });

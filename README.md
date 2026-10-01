@@ -7,7 +7,7 @@
 | --- | --- | --- |
 | 提示 | 單字的英英釋義或中文解釋 | 一句生活化的克漏字例句，加上該語意的英文釋義 |
 | 要拼的字 | 字庫裡的字 | **例句需要的形態**，可能是變化形 |
-| 單字範圍 | 68,352 字 | 考試等級單字（題庫逐批擴充中） |
+| 單字範圍 | 68,352 字 | 考試等級單字 12,608 字 |
 | 線上玩 | 👉 **[釋義版](https://gjchentw.github.io/hangman/)** | 👉 **[克漏字版](https://gjchentw.github.io/hangman/hangman_cloze.html)** |
 | 下載 | [`hangman.html`](hangman.html) | [`hangman_cloze.html`](hangman_cloze.html) |
 
@@ -53,7 +53,7 @@
 - 發音按鈕唸的是答案，也就是句中的那個形態
 
 題目涵蓋考試等級單字（中考、高考、CET4、CET6、研究所、TOEFL、IELTS、GRE），
-依等級逐批撰寫，目標約 12,600 個字、24,500 題。尚未收錄的字會列在「無題目」清單中。
+依等級逐批撰寫，已涵蓋全部 12,608 個字、約 24,500 題。不在範圍內的字會列在「無題目」清單中。
 
 情態助動詞（can、will、must…）沒有「助動詞」這個語意：題目依照 wordset 的語意撰寫，
 而 wordset 裡的 `can` 是罐頭、`will` 是遺囑。`be`、`have`、`do` 則有一般動詞語意，
@@ -154,7 +154,9 @@ python3 tools/build_cloze.py               # 驗證所有題目；有任何不�
 
 驗證器會擋下：句中出現答案或其變化形（五個字母以上的字連衍生字也算，如 `quickly`）、
 空格旁黏著字母（`{{blank}}s`）、答案不是該語意詞性的合法變化形、超過三句、重複或超過每字三題。
-它檢查形式、不檢查語意，所以每一批都要把答案填回句中、對照釋義讀過一遍。
+它也會提出警告（不會讓驗證失敗）：少於五個字的片段句，以及和另一題只差一兩個字的重複句型。
+它檢查形式、不檢查語意，所以每一批都要把答案填回句中、對照釋義讀過一遍，
+順便確認答案是這個句子需要的形態（`to` 後面要原形，`was` 後面要分詞）。
 
 重建中文字典時（需要網路，會下載約 63 MB 的 ECDICT）：
 
@@ -179,10 +181,11 @@ Workflow 會在第一次執行時自動開啟 Pages（`configure-pages` 的 `ena
 
 | 來源 | 內容 | 授權 |
 | --- | --- | --- |
-| [wordset-dictionary](https://github.com/wordset/wordset-dictionary) | 英文釋義與語意 | CC BY-SA 3.0 |
+| [wordset-dictionary](https://github.com/wordset/wordset-dictionary) | 英文釋義、語意與部分例句 | CC BY-SA 3.0 |
 | [ECDICT](https://github.com/skywind3000/ECDICT) | 中文翻譯、考試等級、單字變化形 | MIT |
 | [OpenCC](https://github.com/BYVoid/OpenCC) | 簡體轉正體（s2twp） | Apache-2.0 |
 
 中文部分以 ECDICT 為基礎，經 OpenCC `s2twp` 轉換後再套用台灣用語修正
 （計算機→電腦、導彈→飛彈、熊貓→貓熊、馬鈴薯、幼稚園、機車、太空人…），
-ECDICT 未收錄的 451 個單字為人工翻譯。克漏字例句為原創撰寫。
+ECDICT 未收錄的 451 個單字為人工翻譯。克漏字例句為本專案撰寫，其中約 2% 改寫自 wordset 的例句。
+兩個遊戲頁面底部都列有資料來源與授權。
