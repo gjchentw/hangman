@@ -178,6 +178,8 @@ DENIED_SENSES = {
     ("madam", "beb6da0c20"),     # this sense: a woman who runs a brothel
     ("solicit", "9570e7f48d"),   # this sense: "approach with an offer of sexual favors" (ex: solicited by a prostitute)
     ("procure", "d3b3f4dff4"),   # this sense: "arrange for sexual partners for others" (pandering); procure's other sense ("get by special effort") falls below the tool's existing MIN_DEF_CHARS filter, so this denial removes "procure" from the pool entirely -- expected, pre-existing filter behavior
+    ("pander", "4037dd25aa"),    # this sense: "someone who procures customers for whores" (pimp)
+    ("pander", "7f20fe4f2f"),    # this sense: "arrange for sexual partners for others" (pandering); pander's third sense ("yield (to)", e.g. "pander to someone's whims") is unrelated and kept
     # objectifying/dated stereotype, inappropriate for an exam-prep vocabulary game
     ("lovely", "3d3b3b8df7"),    # this sense: "a very pretty girl who works as a photographer's model"
     ("sister", "b146bf5ae9"),    # this sense: slang term of address for attractive young women
@@ -204,6 +206,7 @@ DENIED_SENSES = {
     ("adorn", "e4ed09f6d1"),     # this sense ("to furnish with power or authority") is word-for-word invest's definition (id 3424c84e83), misfiled under "adorn"
     ("chromatic", "e91f6672e7"), # this sense ("able to refract light without spectral color separation", ex "chromatic lens") is achromatic's definition, misfiled under "chromatic"
     ("lucre", "c5d5c68314"), # this sense ("the excess of revenues over outlays...") is profit's definition, byte-identical to profit/d672def476, misfiled under "lucre"; lucre's other sense ("informal terms for money") is kept
+    ("pagan", "41e2026ea7"), # this sense ("someone motivated by desires for sensual pleasures") is hedonist's definition, byte-identical to hedonist/912d7aee48, misfiled under "pagan"; pagan's other three senses are kept
     # structurally unclozable: the answer is spelled identically to one of the
     # most common function words in English, so the leak-check (which forbids
     # any other occurrence of the word's own spelling in the sentence) makes a
